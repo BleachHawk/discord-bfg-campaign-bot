@@ -1,4 +1,7 @@
-# Discord Wordle Bot - Template
+# Discord 
+
+https://www.youtube.com/watch?v=WlLA1qArOSA
+
 A template for creating a Discord Wordle bot of your own. You can either fork this repo to use as-is or create your own by following the step-by-step instructions below.
 
 ## Setup
@@ -9,8 +12,6 @@ A template for creating a Discord Wordle bot of your own. You can either fork th
 - Move the `index.ts` file into the `src` folder
 - Test everything out by running `bun run src/index.ts`
   - You should see output in your terminal `Hello via Bun!`
-
-## Discord Wordle Bot
 
 ### Discord App Setup
 Next we need to set up connecting to Discord to listen for messages in a channel. In order to do that we need to create an app via the Discord Developer portal.
@@ -85,99 +86,6 @@ It's recommended to have a separate, private, server to use for testing before u
   - If you don't see anything like that logged, make sure it's running from before. `bun run src/index.ts`
 - You just finished creating your Discord Bot!
 
-### Wordle Parsing
-Now that you have a Discord bot that connects and listens for messages you need to handle finding and parsing messages that contain Wordle results.
-
-- Open `index.ts` in the `src` folder.
-- Add this `const` as a regular expression to check if a message is a Wordle result `const wordlePattern = /Wordle (\d{0,3}(,?)\d{1,3}) (🎉 ?)?([X1-6])\/6/;`
-- After that add:
-  ```ts
-  type WordleResult = {
-    discordId: string;
-    userName: string;
-    gameNumber: number;
-    attempts: string;
-  };
-  ```
-- Then add `let wordleResults: WordleResult[] = [];`
-- Add the following function at the end of the file:
-  ```ts
-  function parseWordleResult(message: any): WordleResult | undefined {
-    const userName = message.author.username;
-    const discordId = message.author.id;
-    const match = wordlePattern.exec(message.content);
-
-    if (match) {
-      const gameNumber = parseInt(match[1].replace(/,/g, ''));
-      const attempts = match[4];
-
-      return {
-        discordId,
-        userName,
-        gameNumber,
-        attempts,
-      };
-    }
-
-    return undefined;
-  }
-  ```
-- Inside the `client.on(Events.MessageCreate...` callback function remove the `console.log` code from before.
-- Add the following code in its place:
-  ```ts
-  const parsedWordle = parseWordleResult(message);
-  if (parsedWordle) {
-    const currentResults = await processLatestWordleResult(parsedWordle);
-    await processCurrentResults(currentResults, message);
-  } else {
-    console.log('Message was determined to not be intended for the bot');
-  }
-  ```
-- Now you need to implement the `processLatestWordleResult` and `processCurrentResults` functions. At the bottom of `index.ts` add the following code for them:
-  ```ts
-  async function processLatestWordleResult(parsedWordle: WordleResult): Promise<WordleResult[]> {
-    // Prevent duplicates
-    const existingResultForUser = wordleResults.find((wordle) => wordle.discordId === parsedWordle.discordId && wordle.gameNumber === parsedWordle.gameNumber);
-  
-    const scoresForCurrentGame = wordleResults.filter((wordle) => wordle.gameNumber === parsedWordle.gameNumber) || [];
-  
-    if (!existingResultForUser) {
-      wordleResults.push(parsedWordle);
-      scoresForCurrentGame.push(parsedWordle);
-    } else {
-      console.log(`Result already exists: ${parsedWordle.gameNumber} - ${parsedWordle.userName}`);
-    }
-  
-    return scoresForCurrentGame;
-  }
-  ```
-
-### Sharing Wordles
-Now you can start trying out sharing your Wordle results in the text channel this bot is listening to.
-
-- First try sending a general message to make sure it ignores it and doesn't try to parse it as a wordle
-  - Example: `'Hello world'`
-- You should see the following message logged: `"Message was determined to not be intended for the bot"`
-- Then try a real Wordle
-  - Example:
-    ```
-    Wordle 1,265 5/6
-
-    ⬛⬛⬛⬛⬛
-    ⬛⬛🟨🟨⬛
-    ⬛🟨⬛⬛🟨
-    🟩🟩⬛🟩⬛
-    🟩🟩🟩🟩🟩
-    ```
-- You should see something like the following message logged: `"Current Winner for Wordle 1,265 with 5 attempts: <@1234567890>"`
-- You should also see a message in the Discord channel from your bot indicating the current winner for the Wordle you entered
-  - Example:
-
-    ![A screenshot of clarkio sending a message of "test" in a Discord channel and a Wordle result message. The Discord bot responds with a message indicating the current winner for the Wordle game clarkio entered](/images/wordle-bot-response-example.png)
-- Sweet! Now you have a working Discord bot that can parse and process messages containing Wordle results AND it responds with who's winning with the lowest number of attempts for that Wordle game number.
-
-## Data Storage
-Currently you're only storing the Wordle results in memory via the `wordleResults` array. If you stop the bot or it restarts you'll lose any of the previously captured results. Let's make the bot more robust by using a database for storage.
 
 ### Database Setup
 You can use any database technology you'd like to handle storage for your bot but for this tutorial you'll learn how to use libSQL (SQLite compatability) with DrizzleORM (Object-Relational Mapping).

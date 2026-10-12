@@ -1,0 +1,78 @@
+{
+    "campaigns": [
+        {
+            "campaign_ID": 1,
+            "campaign_discord": "BFG Testserver",
+            "campaign_name": "The Northern War",
+            "campaign_sector_ID": 1,
+            "campaign_startDate": "2026-10-12"
+        }
+    ],
+    "sectors": [
+        {
+            "sector_ID": 1,
+            "sector_name": "Charlemagne Sector"
+        }
+    ],
+    "subsectors": [
+        {
+            "subsector_ID": 1,
+            "subsector_name": "Marcodurum Subsector",
+            "sector_ID": 1
+        },
+        {
+            "subsector_ID": 2,
+            "subsector_name": "Northern Reaches",
+            "sector_ID": 1
+        },
+        {
+            "subsector_ID": 3,
+            "subsector_name": "Outer Marches",
+            "sector_ID": 1
+        }
+    ],
+    "systems": [
+        {
+            "system_name": "System 1",
+            "subsector_ID": 1
+        },
+        {
+            "system_name": "System 2",
+            "subsector_ID": 2
+        },
+        {
+            "system_name": "System 3",
+            "subsector_ID": 3
+        }
+    ],
+    "factions": [
+        {
+            "faction_name": "Imperial Navy"
+        },
+        {
+            "faction_name": "Adeptus Mechanicus"
+        },
+        {
+            "faction_name": "Imperial Navy"
+        },
+        {
+            "faction_name": "Chaos"
+        },
+        {
+            "faction_name": "Tau"
+        },
+        {
+            "faction_name": "Orks"
+        },
+        {
+            "faction_name": "Eldar Craftworld"
+        },
+        {
+            "faction_name": "Eldar Corsairs"
+        },
+        {
+            "faction_name": "Dark Eldar"
+        }
+    ],
+    "battles": []
+}

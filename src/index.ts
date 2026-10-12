@@ -1,130 +1,270 @@
-import { Client, Events, GatewayIntentBits } from 'discord.js';
-import * as db from './db';
-import type { SelectScoreWithRelations } from './db/schema';
+import { Client, Events, GatewayIntentBits, User } from 'discord.js';
+import * as db from './db/db';
+import * as dbQueries from './db/queries';
+import type { battles } from './db/schema';
 
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-  ],
-});
-const wordlePattern = /Wordle (\d{0,3}(,?)\d{1,3}) (🎉 ?)?([X1-6])\/6/;
-type WordleResult = {
-  discordId: string;
-  userName: string;
-  gameNumber: number;
-  attempts: string;
-};
-let wordleResults: WordleResult[] = [];
+interface IEmbeds {
+  created: any;
+  closed: any;
+}
 
-client.once(Events.ClientReady, async (readyClient) => {
-  console.log(`Logged in as ${readyClient.user?.tag}`);
-});
+interface IField {
+  name: string;
+  value: string;
+}
 
-client.on(Events.MessageCreate, async (message) => {
-  const parsedWordle = parseWordleResult(message);
-  if (parsedWordle) {
-    const currentResults = await processLatestWordleResult(parsedWordle);
-    await processCurrentResults(currentResults, message);
-  } else {
-    console.log('Message was determined to not be intended for the bot');
-  }
-});
+const KEY_CREATED = 'Ticket Created';
+const KEY_CLOSED = 'Ticket Closed';
+const KEY_PLAYER_1 = 'Player 1';
+const KEY_PLAYER_2 = 'Player 2';
+const KEY_SYSTEM = 'Target System';
+const KEY_POINT_LIMIT = 'Point Limit';
+const KEY_P1_VP = 'Player 1 Victory Points';
+const KEY_P2_VP = 'Player 2 Victory Points';
+const KEY_BATTLE_REPORT = 'Narrative Battle Report';
 
-await client.login(process.env.DISCORD_BOT_TOKEN);
+async function main() {
+  // init the database
+  await db.initializeDatabase();
 
-function parseWordleResult(message: any): WordleResult | undefined {
-  const userName = message.author.username;
-  const discordId = message.author.id;
-  const match = wordlePattern.exec(message.content);
+  /**
+   * The Discord client.
+   */
+  const client = new Client({
+    intents: [
+      GatewayIntentBits.Guilds,
+      GatewayIntentBits.GuildMessages,
+      GatewayIntentBits.MessageContent
+    ],
+  });
 
-  if (match) {
-    const gameNumber = parseInt(match[1].replace(/,/g, ''));
-    const attempts = match[4];
+  /**
+   * Discord event handler for successful login.
+   */
+  client.once(Events.ClientReady, async (readyClient) => {
+    console.log(`Logged in as ${readyClient.user?.tag}`);
+  });
+  /**
+   * Discord event handler for message posts.
+   */
+  client.on(Events.MessageCreate, async (message) => {
+    parseMessage(message);
+  });
 
-    return {
-      discordId,
-      userName,
-      gameNumber,
-      attempts,
+  /**
+   * Get the embeds of messages in the given channel.
+   * @param channel the channel
+   * @returns the IEmbeds containing created / closed embeds.
+   */
+  async function getEmbeds(channel: any): Promise<IEmbeds> {
+    let embeddedMsgs: IEmbeds = {
+      created: '',
+      closed: '',
     };
+
+    // get all the messages from channel
+    await channel.messages.fetch({ limit: 100 }).then(messagePage => {
+      messagePage.forEach(msg => {
+        // check for 1 embed
+        if (msg.embeds && msg.embeds.length === 1) {
+          const embed = msg.embeds[0];
+          if (embed.data) {
+            const data = embed.data;
+
+            // check if the embed is either ticket created or ticket closed
+            if (data.title === KEY_CREATED) {
+              embeddedMsgs.created = data;
+            }
+            else if (data.title === KEY_CLOSED) {
+              embeddedMsgs.closed = data;
+            }
+          }
+        }
+      });
+    });
+
+    return embeddedMsgs;
   }
 
-  return undefined;
-}
+  /**
+   * Check if the user is allowed to submit.
+   * @param user the user
+   * @returns true / false
+   */
+  async function userCanSubmit(user: string): Promise<boolean> {
+    // // get submissions from DB
+    // const submissions = new Map<string, number[]>()
+    // const now = Date.now();
+    // const weekAgo = now - 7 * 24 * 60 * 60 * 1000;
 
-async function processLatestWordleResult(parsedWordle: WordleResult): Promise<SelectScoreWithRelations[]> {
-  // Prevent duplicates
-  const scoresForCurrentGame = await db.getScoresByGameNumber(parsedWordle.gameNumber);
-  const existingResultForUser = scoresForCurrentGame.find((score: SelectScoreWithRelations) => score.discordId === parsedWordle.discordId);
-  if (!existingResultForUser) {
-    await db.createPlayer(parsedWordle.discordId, parsedWordle.userName);
-    if(scoresForCurrentGame.length === 0) {
-      await db.createWordle(parsedWordle.gameNumber);
-    }
-    const addedScore = await db.createScore(parsedWordle.discordId, parsedWordle.gameNumber, parsedWordle.attempts);
-    if(addedScore){
-      scoresForCurrentGame.push(addedScore);
-    } else {
-      console.error(`Error adding result to the database: ${parsedWordle.gameNumber} - ${parsedWordle.userName}`);
-    }
-  } else {
-    console.log(`Result already exists: ${parsedWordle.gameNumber} - ${parsedWordle.userName}`);
+    // const recent = (submissions.get(user) ?? [])
+    //   .filter(timestamp => timestamp > weekAgo);
+
+    // if (recent.length >= 2) {
+    //   // 'WARN: the user <user> has submitted 2 results in the last 7 days'
+    //   return false;
+    // }
+
+    // recent.push(now);
+    // // TODO: update submissions in DB
+    // // submissions.set(user, recent);
+
+    return true;
   }
-  return scoresForCurrentGame;
-}
 
-async function processCurrentResults(currentResults: SelectScoreWithRelations[], message: any) {
-  try {
-    if (currentResults.length > 0) {
-      const winners: SelectScoreWithRelations[] = await determineWinners(currentResults);
-      if (winners.length > 0) {
-        await informLatestResults(winners, message);
+  /**
+   * Parse the given message
+   * @param message 
+   * @returns 
+   */
+  async function parseMessage(message: any) {
+    const msgContent = message.content;
+    const author = message.author;
+
+    // ignore our own messages
+    if (author.username.indexOf('BFG_Campaign_Bot') > -1) {
+      return;
+    }
+
+    console.log(`${message.guild} / ${author.tag} said: ${message.content}`);
+
+    // get the embeds from messages in this channel
+    const channelId = message.channelId;
+    const channel = client.channels.cache.get(channelId);
+    const embeds = await getEmbeds(channel);
+
+    if (embeds.closed) {
+      // -> store the battle result
+      message.channel.send('=== Closed Battle Result found, processing ===');
+      processBattle(message, embeds.created.fields, author);
+    } else if (embeds.created) {
+      message.channel.send('=== Open Battle Result found, not processing yet ===');
+
+      // check if the fields are valid
+      const validBattle = await validateFields(message, embeds.created.fields)
+      if (validBattle) {
+        // check if the user can submit
+        const user = embeds.created.fields.find((field: IField) => field.name === 'Created By').value;
+        const canSubmit = await userCanSubmit(user);
+        if (!canSubmit) {
+          message.channel.send('=== **WARN:** User ' + user + ' has submitted 2 Battle Results in the past 7 days ===');
+        }
       }
     } else {
-      console.log('No results from processing the latest Wordle result.');
+      console.log('Message was determined to not be intended for the bot');
     }
-  } catch (error) {
-    console.error('Error processing Wordle Result:', error);
   }
+
+  /**
+   * Validate the given fields and build a battle report object.
+   * @param message the message
+   * @param fields the message embed fields
+   * @returns a battle report object or undefined if there is something wrong
+   */
+  async function validateFields(message, fields: IField[]): Promise<typeof battles.$inferInsert | undefined> {
+    const campaign = await dbQueries.getCampaignByDiscord(message.guild);
+
+    let battle: typeof battles.$inferInsert = {
+      campaign_ID: campaign.campaign_ID
+    };
+
+    let error = '';
+
+    // fields.forEach(async (field) => {
+    for (const field of fields) {
+      switch (field.name) {
+        case KEY_PLAYER_1:
+          const faction1 = await dbQueries.getFactionByName(field.value);
+          battle.battle_faction1 = faction1.faction_ID;
+          break;
+        case KEY_PLAYER_2:
+          const faction2 = await dbQueries.getFactionByName(field.value);
+          battle.battle_faction2 = faction2.faction_ID;
+          break;
+        case KEY_SYSTEM:
+          const system = await dbQueries.getSystemByName(field.value);
+          battle.battle_system = system.system_ID;
+          break;
+        case KEY_POINT_LIMIT:
+          const points = parseInt(field.value);
+          if (points < 250 || points > 5000) {
+            error += 'Point Limit outside of range: 750 - 5000\n';
+            battle.battle_points = 0;
+          } else {
+            battle.battle_points = points;
+          }
+          break;
+        case KEY_P1_VP:
+          const vp1 = parseInt(field.value);
+          if (vp1 < 0 || vp1 > 5000) {
+            error += 'Player 1 Victory Points outside of range: 0 - 5000\n';
+            battle.battle_points = 0;
+          } else {
+            battle.battle_victoryPoints1 = vp1;
+          }
+          break;
+        case KEY_P2_VP:
+          const vp2 = parseInt(field.value);
+          if (vp2 < 0 || vp2 > 5000) {
+            error += 'Player 2 Victory Points outside of range: 0 - 5000\n';
+            battle.battle_points = 0;
+          } else {
+            battle.battle_victoryPoints2 = vp2;
+          }
+          break;
+        case KEY_BATTLE_REPORT:
+          const report = sanitize(field.value);
+          battle.battle_report = report ? report : '';
+          break;
+      }
+    };
+
+    if (error) {
+      console.log('Error: ' + error);
+      await message.channel.send('=== **ERROR:** ===\n' + error);
+      return undefined;
+    }
+    return battle;
+  }
+
+  /**
+   * Process and store a battle report.
+   * @param message the message
+   * @param fields the fields
+   * @param author the author
+   */
+  async function processBattle(message, fields: IField[], author: User) {
+    const battle = await validateFields(message, fields);
+    if (battle) {
+      console.log('Adding battle: ' + JSON.stringify(battle));
+      battle.battle_author = author.tag;
+      await dbQueries.addBattle(battle);
+      await message.channel.send('=== Battle Result has been logged ===');
+    } else {
+      console.log('Error: no battle to process');
+    }
+  }
+
+  /**
+   * Sanitize given string.
+   * @param string the string
+   * @returns the sanitized string
+   */
+  function sanitize(string: string) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;',
+      "/": '&#x2F;',
+      '`': '&grave'
+    };
+    const reg = /[&<>"'/]/ig;
+    return string.replace(reg, (match: string | number) => (map[match]));
+  }
+
+  // login to Discord
+  await client.login(process.env.DISCORD_BOT_TOKEN);
 }
-
-async function determineWinners(results: SelectScoreWithRelations[]): Promise<SelectScoreWithRelations[]> {
-  if (!results || results.length === 0) return [];
-
-  // Filter out failed attempts (X) before processing
-  const validResults = results.filter(score => score.attempts.toUpperCase() !== 'X');
-
-  if (validResults.length === 0) return [];
-
-  // Convert attempts to numbers for comparison
-  const resultsWithNumericAttempts = validResults.map(result => ({
-    ...result,
-    numericAttempts: parseInt(result.attempts)
-  }));
-
-  // Find minimum attempts
-  const minAttempts = Math.min(
-    ...resultsWithNumericAttempts.map(result => result.numericAttempts)
-  );
-
-  // Return all scores that match minimum attempts
-  return validResults.filter((_, index) =>
-    resultsWithNumericAttempts[index].numericAttempts === minAttempts
-  );
-}
-
-async function informLatestResults(winners: SelectScoreWithRelations[], message: any) {
-  const winnerDiscordIds = winners.map(winner => winner.discordId);
-  const winnerDiscordTags = winnerDiscordIds.map(id => `<@${id}>`);
-
-  const gameNumber = winners[0].gameNumber || 1;
-  const winningAttempts = winners[0].attempts === 'X' ? 0 : parseInt(winners[0].attempts);
-  const winnerTags = winnerDiscordTags.join(', ');
-
-  const winnerMessage = `Current Winner${winners.length > 1 ? "s" : ""} for Wordle ${gameNumber.toLocaleString()} with ${winningAttempts} attempt${winningAttempts !== 0 && winningAttempts > 1 ? 's' : ''}: ${winnerTags}`;
-
-  console.log(winnerMessage);
-  await message.channel.send(winnerMessage);
-}
+main().catch(console.error);
