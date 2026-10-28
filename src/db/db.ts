@@ -2,7 +2,7 @@ import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
 import * as schema from "./schema";
 import * as dbQueries from "./queries";
-import init from './init.json';
+import initData from './init.json';
 
 const dbFile = process.env.DB_FILE_NAME;
 if (!dbFile) {
@@ -28,6 +28,9 @@ export async function initializeDatabase(): Promise<void> {
       sql: `CREATE TABLE IF NOT EXISTS subsectors (
         subsector_ID INTEGER PRIMARY KEY,
         subsector_name TEXT NOT NULL,
+        description TEXT NOT NULL,
+        polygon_points TEXT NOT NULL DEFAULT '[]'
+          CHECK (json_valid(polygon_points)),
         sector_ID INTEGER NOT NULL,
         UNIQUE (sector_ID, subsector_name),
         FOREIGN KEY (sector_ID) REFERENCES sectors(sector_ID)
@@ -37,7 +40,12 @@ export async function initializeDatabase(): Promise<void> {
     {
       sql: `CREATE TABLE IF NOT EXISTS systems (
         system_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        location_x INTEGER NOT NULL,
+        location_y INTEGER NOT NULL,
         system_name TEXT NOT NULL,
+        description TEXT NOT NULL,
+        type TEXT NOT NULL,
+        currentFaction TEXT,
         subsector_ID INTEGER NOT NULL,
         FOREIGN KEY (subsector_ID) REFERENCES subsectors(subsector_ID)
       )`,
@@ -58,7 +66,8 @@ export async function initializeDatabase(): Promise<void> {
     {
       sql: `CREATE TABLE IF NOT EXISTS factions (
         faction_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-        faction_name TEXT NOT NULL
+        faction_name TEXT NOT NULL,
+        short_name TEXT NOT NULL
       )`,
       args: [],
     },
@@ -102,24 +111,30 @@ export async function initializeDatabase(): Promise<void> {
 }
 
 export async function initializeDatabaseData() {
-  for (var sector in init.sectors) {
-    await dbQueries.addSector(init.sectors[sector]);
+  for (var sector in initData.sectors) {
+    await dbQueries.addSector(initData.sectors[sector]);
   }
 
-  for (var subsector in init.subsectors) {
-    await dbQueries.addSubsector(init.subsectors[subsector]);
+  for (var subsector in initData.subsectors) {
+    await dbQueries.addSubsector(initData.subsectors[subsector] as {
+      subsector_ID: number;
+      subsector_name: string;
+      sector_ID: number;
+      polygon_points: [number, number][];
+      description: string;
+    });
   }
 
-  for (var system in init.systems) {
-    await dbQueries.addSystem(init.systems[system]);
+  for (var system in initData.systems) {
+    await dbQueries.addSystem(initData.systems[system]);
   }
 
-  for (var faction in init.factions) {
-    await dbQueries.addFaction(init.factions[faction]);
+  for (var faction in initData.factions) {
+    await dbQueries.addFaction(initData.factions[faction]);
   }
 
-  for (var campaign in init.campaigns) {
-    await dbQueries.addCampaign(init.campaigns[campaign]);
+  for (var campaign in initData.campaigns) {
+    await dbQueries.addCampaign(initData.campaigns[campaign]);
   }
 
   console.log("DB: initial data created");

@@ -49,31 +49,6 @@ export async function getCampaignByDiscord(discord: string) {
   return result;
 }
 
-export async function getCampaignDetails(id: number) {
-  const [result] = await db
-    .select({
-      campaign: campaigns,
-      subsector: subsectors,
-      sector: sectors,
-    })
-    .from(campaigns)
-    .leftJoin(
-      subsectors,
-      eq(
-        campaigns.campaign_sector_ID,
-        subsectors.subsector_ID,
-      ),
-    )
-    .leftJoin(
-      sectors,
-      eq(subsectors.sector_ID, sectors.sector_ID),
-    )
-    .where(eq(campaigns.campaign_ID, id))
-    .limit(1);
-
-  return result;
-}
-
 // -------------------------
 // SECTORS
 // -------------------------
@@ -85,20 +60,6 @@ export async function addSector(
     .insert(sectors)
     .values(data)
     .returning();
-
-  return result;
-}
-
-export async function getSectors() {
-  return db.select().from(sectors);
-}
-
-export async function getSectorById(id: number) {
-  const [result] = await db
-    .select()
-    .from(sectors)
-    .where(eq(sectors.sector_ID, id))
-    .limit(1);
 
   return result;
 }
@@ -118,29 +79,6 @@ export async function addSubsector(
   return result;
 }
 
-export async function getSubsectors() {
-  return db.select().from(subsectors);
-}
-
-export async function getSubsectorsBySectorId(
-  sectorId: number,
-) {
-  return db
-    .select()
-    .from(subsectors)
-    .where(eq(subsectors.sector_ID, sectorId));
-}
-
-export async function getSubsectorById(id: number) {
-  const [result] = await db
-    .select()
-    .from(subsectors)
-    .where(eq(subsectors.subsector_ID, id))
-    .limit(1);
-
-  return result;
-}
-
 // -------------------------
 // SYSTEMS
 // -------------------------
@@ -156,29 +94,6 @@ export async function addSystem(
   return result;
 }
 
-export async function getSystem() {
-  return db.select().from(systems);
-}
-
-export async function getSystemsBySubsectorId(
-  subsectorId: number,
-) {
-  return db
-    .select()
-    .from(systems)
-    .where(eq(systems.subsector_ID, subsectorId));
-}
-
-export async function getSystemById(id: number) {
-  const [result] = await db
-    .select()
-    .from(systems)
-    .where(eq(systems.system_ID, id))
-    .limit(1);
-
-  return result;
-}
-
 export async function getSystemByName(name: string) {
   const [result] = await db
     .select()
@@ -188,8 +103,6 @@ export async function getSystemByName(name: string) {
 
   return result;
 }
-
-
 
 // -------------------------
 // FACTIONS
@@ -202,20 +115,6 @@ export async function addFaction(
     .insert(factions)
     .values(data)
     .returning();
-
-  return result;
-}
-
-export async function getFactions() {
-  return db.select().from(factions);
-}
-
-export async function getFactionById(id: number) {
-  const [result] = await db
-    .select()
-    .from(factions)
-    .where(eq(factions.faction_ID, id))
-    .limit(1);
 
   return result;
 }

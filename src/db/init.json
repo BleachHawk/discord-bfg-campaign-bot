@@ -3,7 +3,7 @@
         {
             "campaign_ID": 1,
             "campaign_discord": "BFG Testserver",
-            "campaign_name": "The Northern War",
+            "campaign_name": "Shadow over Discordia",
             "campaign_sector_ID": 1,
             "campaign_startDate": "2026-10-12"
         }
@@ -11,67 +11,190 @@
     "sectors": [
         {
             "sector_ID": 1,
-            "sector_name": "Charlemagne Sector"
+            "sector_name": "Discordia Sector"
         }
     ],
     "subsectors": [
         {
             "subsector_ID": 1,
-            "subsector_name": "Marcodurum Subsector",
-            "sector_ID": 1
+            "subsector_name": "Kerkradium",
+            "sector_ID": 1,
+            "polygon_points": [
+                [
+                    5,
+                    15
+                ],
+                [
+                    38,
+                    8
+                ],
+                [
+                    48,
+                    40
+                ],
+                [
+                    35,
+                    72
+                ],
+                [
+                    12,
+                    80
+                ]
+            ],
+            "description": "First subsector."
         },
         {
             "subsector_ID": 2,
-            "subsector_name": "Northern Reaches",
-            "sector_ID": 1
+            "subsector_name": "Ach'enrock",
+            "sector_ID": 1,
+            "polygon_points": [
+                [
+                    38,
+                    8
+                ],
+                [
+                    80,
+                    15
+                ],
+                [
+                    92,
+                    48
+                ],
+                [
+                    68,
+                    78
+                ],
+                [
+                    35,
+                    72
+                ],
+                [
+                    48,
+                    40
+                ]
+            ],
+            "description": "Second subsector."
         },
         {
             "subsector_ID": 3,
-            "subsector_name": "Outer Marches",
-            "sector_ID": 1
+            "subsector_name": "Du-ren Reach",
+            "sector_ID": 1,
+            "polygon_points": [
+                [
+                    12,
+                    80
+                ],
+                [
+                    35,
+                    72
+                ],
+                [
+                    68,
+                    78
+                ],
+                [
+                    60,
+                    95
+                ],
+                [
+                    20,
+                    94
+                ]
+            ],
+            "description": "Third subsector."
+        },
+        {
+            "subsector_ID": 4,
+            "subsector_name": "Moresneth",
+            "sector_ID": 1,
+            "polygon_points": [
+                [
+                    80,
+                    15
+                ],
+                [
+                    95,
+                    8
+                ],
+                [
+                    98,
+                    35
+                ],
+                [
+                    92,
+                    48
+                ]
+            ],
+            "description": "Fourth subsector."
         }
     ],
     "systems": [
         {
-            "system_name": "System 1",
-            "subsector_ID": 1
+            "system_ID": 1,
+            "system_name": "Port Talon",
+            "type": "Hive",
+            "location_x": 22,
+            "location_y": 42,
+            "subsector_ID": 1,
+            "description": "A major Hiveworld.",
+            "currentFaction": "imperial"
         },
         {
-            "system_name": "System 2",
-            "subsector_ID": 2
+            "system_ID": 2,
+            "system_name": "Chordis",
+            "type": "Forge",
+            "location_x": 57,
+            "location_y": 35,
+            "subsector_ID": 2,
+            "description": "A major Forgeworld.",
+            "currentFaction": "chaos"
         },
         {
-            "system_name": "System 3",
-            "subsector_ID": 3
+            "system_ID": 3,
+            "system_name": "Dead Stars",
+            "type": "Dead",
+            "location_x": 76,
+            "location_y": 60,
+            "subsector_ID": 4,
+            "description": "A system of unusual navigational significance."
         }
     ],
     "factions": [
         {
-            "faction_name": "Imperial Navy"
+            "faction_name": "Imperial Navy",
+            "short_name": "imperial"
         },
         {
-            "faction_name": "Adeptus Mechanicus"
+            "faction_name": "Adeptus Mechanicus",
+            "short_name": "admech"
         },
         {
-            "faction_name": "Imperial Navy"
+            "faction_name": "Tyranids",
+            "short_name": "tyranid"
         },
         {
-            "faction_name": "Chaos"
+            "faction_name": "Chaos",
+            "short_name": "chaos"
         },
         {
-            "faction_name": "Tau"
+            "faction_name": "Tau",
+            "short_name": "tau"
         },
         {
-            "faction_name": "Orks"
+            "faction_name": "Orks",
+            "short_name": "orks"
         },
         {
-            "faction_name": "Eldar Craftworld"
+            "faction_name": "Eldar Craftworld",
+            "short_name": "craftworld"
         },
         {
-            "faction_name": "Eldar Corsairs"
+            "faction_name": "Eldar Corsairs",
+            "short_name": "corsair"
         },
         {
-            "faction_name": "Dark Eldar"
+            "faction_name": "Dark Eldar",
+            "short_name": "darkeldar"
         }
     ],
     "battles": []

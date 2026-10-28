@@ -138,7 +138,7 @@ async function main() {
       message.channel.send('=== Closed Battle Result found, processing ===');
       processBattle(message, embeds.created.fields, author);
     } else if (embeds.created) {
-      message.channel.send('=== Open Battle Result found, not processing yet ===');
+      message.channel.send('=== Open Battle Result found, valid input, not processing yet ===');
 
       // check if the fields are valid
       const validBattle = await validateFields(message, embeds.created.fields)
@@ -161,7 +161,7 @@ async function main() {
    * @param fields the message embed fields
    * @returns a battle report object or undefined if there is something wrong
    */
-  async function validateFields(message, fields: IField[]): Promise<typeof battles.$inferInsert | undefined> {
+  async function validateFields(message: any, fields: IField[]): Promise<typeof battles.$inferInsert | undefined> {
     const campaign = await dbQueries.getCampaignByDiscord(message.guild);
 
     let battle: typeof battles.$inferInsert = {
@@ -170,7 +170,6 @@ async function main() {
 
     let error = '';
 
-    // fields.forEach(async (field) => {
     for (const field of fields) {
       switch (field.name) {
         case KEY_PLAYER_1:
@@ -233,7 +232,7 @@ async function main() {
    * @param fields the fields
    * @param author the author
    */
-  async function processBattle(message, fields: IField[], author: User) {
+  async function processBattle(message: any, fields: IField[], author: User) {
     const battle = await validateFields(message, fields);
     if (battle) {
       console.log('Adding battle: ' + JSON.stringify(battle));
