@@ -45,7 +45,7 @@ export async function initializeDatabase(): Promise<void> {
         system_name TEXT NOT NULL,
         description TEXT NOT NULL,
         type TEXT NOT NULL,
-        currentFaction TEXT,
+        currentFaction_ID INTEGER,
         subsector_ID INTEGER NOT NULL,
         FOREIGN KEY (subsector_ID) REFERENCES subsectors(subsector_ID)
       )`,

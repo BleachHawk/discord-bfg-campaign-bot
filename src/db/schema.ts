@@ -34,8 +34,8 @@ export const systems = sqliteTable("systems", {
   location_x: integer("location_x").primaryKey(),
   location_y: integer("location_y").primaryKey(),
   description: text("description"),
-  type: text("type"),
-  currentFaction: text("currentFaction"),
+  type: text("type").notNull(),
+  currentFaction_ID: integer("currentFaction_ID"),
   subsector_ID: integer("subsector_ID")
     .notNull()
     .references(() => subsectors.subsector_ID),

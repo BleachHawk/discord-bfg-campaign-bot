@@ -238,6 +238,12 @@ async function main() {
       console.log('Adding battle: ' + JSON.stringify(battle));
       battle.battle_author = author.tag;
       await dbQueries.addBattle(battle);
+
+      // TODO: calculate control points
+      // 1. get all battles, filter for target system
+      // 2. calculate for each faction
+      // 3. update faction ID if a new faction has the most control points
+
       await message.channel.send('=== Battle Result has been logged ===');
     } else {
       console.log('Error: no battle to process');
