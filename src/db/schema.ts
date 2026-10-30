@@ -45,6 +45,7 @@ export const factions = sqliteTable("factions", {
   faction_ID: integer("faction_ID").primaryKey(),
   faction_name: text("faction_name").notNull(),
   short_name: text("short_name").notNull(),
+  composite: text("composite"),
 });
 
 export const battles = sqliteTable("battles", {

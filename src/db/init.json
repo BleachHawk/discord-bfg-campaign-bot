@@ -6,6 +6,13 @@
             "campaign_name": "Shadow over Discordia",
             "campaign_sector_ID": 1,
             "campaign_startDate": "2026-10-12"
+        },
+        {
+            "campaign_ID": 2,
+            "campaign_discord": "TEST",
+            "campaign_name": "TEST",
+            "campaign_sector_ID": 1,
+            "campaign_startDate": "2026-10-30"
         }
     ],
     "sectors": [
@@ -183,8 +190,7 @@
             "location_x": 22,
             "location_y": 42,
             "subsector_ID": 1,
-            "description": "A major Hiveworld.",
-            "currentFaction_ID": 1
+            "description": "A major Hiveworld."
         },
         {
             "system_name": "Forge",
@@ -192,8 +198,7 @@
             "location_x": 27,
             "location_y": 25,
             "subsector_ID": 1,
-            "description": "A major Forgeworld.",
-            "currentFaction_ID": 4
+            "description": "A major Forgeworld."
         },
         {
             "system_name": "Civilised World",
@@ -201,8 +206,7 @@
             "location_x": 57,
             "location_y": 45,
             "subsector_ID": 2,
-            "description": "A civilised world.",
-            "currentFaction_ID": 12
+            "description": "A civilised world."
         },
         {
             "system_name": "Knight World",
@@ -226,8 +230,7 @@
             "location_x": 76,
             "location_y": 60,
             "subsector_ID": 4,
-            "description": "A dead world.",
-            "currentFaction_ID": 11
+            "description": "A dead world."
         },
         {
             "system_name": "Mining Asteroid",
@@ -235,63 +238,211 @@
             "location_x": 90,
             "location_y": 35,
             "subsector_ID": 4,
-            "description": "An important mining asteroid.",
-            "currentFaction_ID": 13
+            "description": "An important mining asteroid."
         }
     ],
     "factions": [
         {
+            "faction_ID": 1,
+            "faction_name": "Imperium",
+            "short_name": "imperial",
+            "composite": [ 4, 5, 14, 15, 16 ]
+        },
+        {
+            "faction_ID": 2,
+            "faction_name": "Chaos & Renegades",
+            "short_name": "renegades",
+            "composite": [ 7, 9, 11, 17]
+        },
+        {
+            "faction_ID": 3,
+            "faction_name": "Xenos",
+            "short_name": "xenos",
+            "composite": [ 6, 8, 10, 12, 13 ]
+        },
+        {
+            "faction_ID": 4,
             "faction_name": "Imperial Navy",
             "short_name": "navy"
         },
         {
+            "faction_ID": 5,
             "faction_name": "Adeptus Mechanicus",
             "short_name": "admech"
         },
         {
+            "faction_ID": 6,
             "faction_name": "Tyranids",
             "short_name": "tyranid"
         },
         {
+            "faction_ID": 7,
             "faction_name": "Chaos",
             "short_name": "chaos"
         },
         {
+            "faction_ID": 8,
             "faction_name": "Tau",
             "short_name": "tau"
         },
         {
+            "faction_ID": 9,
             "faction_name": "Orks",
             "short_name": "orks"
         },
         {
+            "faction_ID": 10,
             "faction_name": "Eldar Craftworld",
             "short_name": "craftworld"
         },
         {
+            "faction_ID": 11,
             "faction_name": "Eldar Corsairs",
             "short_name": "corsair"
         },
         {
+            "faction_ID": 12,
             "faction_name": "Dark Eldar",
             "short_name": "darkeldar"
         },
         {
+            "faction_ID": 13,
             "faction_name": "Necrons",
             "short_name": "necrons"
         },
         {
-            "faction_name": "Imperium",
-            "short_name": "imperial"
+            "faction_ID": 14,
+            "faction_name": "Space Marines",
+            "short_name": "marines"
         },
         {
-            "faction_name": "Chaos & Renegades",
-            "short_name": "renegades"
+            "faction_ID": 15,
+            "faction_name": "Inquisition",
+            "short_name": "inq"
         },
         {
-            "faction_name": "Xenos",
-            "short_name": "xenos"
+            "faction_ID": 16,
+            "faction_name": "Rogue Trader",
+            "short_name": "rogue"
+        },
+        {
+            "faction_ID": 17,
+            "faction_name": "Wolfpacks (Pirates)",
+            "short_name": "pirates"
         }
     ],
-    "battles": []
+    "battles": [
+        {
+            "battle_ID": 1,
+            "campaign_ID": 1,
+            "battle_system": 3,
+            "battle_faction1": 1,
+            "battle_faction2": 2,
+            "battle_points": 1500,
+            "battle_player1": "Imperial Navy",
+            "battle_player2": "Chaos Renegades",
+            "battle_victoryPoints1": 850,
+            "battle_victoryPoints2": 420,
+            "battle_report": "Imperial forces intercepted a Chaos raiding fleet near the outer moon of the system. After a prolonged exchange of fire, the Imperial flagship crippled the enemy cruiser, forcing the remaining Chaos vessels to retreat.",
+            "battle_author": "Lord Admiral Thorne"
+        },
+        {
+            "battle_ID": 2,
+            "campaign_ID": 1,
+            "battle_system": 5,
+            "battle_faction1": 1,
+            "battle_faction2": 3,
+            "battle_points": 2000,
+            "battle_player1": "Imperial Navy",
+            "battle_player2": "Ork Freebooterz",
+            "battle_victoryPoints1": 300,
+            "battle_victoryPoints2": 920,
+            "battle_report": "An Ork raiding force ambushed an Imperial patrol near an asteroid belt. Overwhelmed by the sheer number of enemy vessels, the Imperial commander ordered a retreat to preserve the remaining ships.",
+            "battle_author": "Commodore Voss"
+        },
+        {
+            "battle_ID": 3,
+            "campaign_ID": 1,
+            "battle_system": 2,
+            "battle_faction1": 2,
+            "battle_faction2": 4,
+            "battle_points": 1200,
+            "battle_player1": "Chaos Renegades",
+            "battle_player2": "Eldar Corsairs",
+            "battle_victoryPoints1": 670,
+            "battle_victoryPoints2": 640,
+            "battle_report": "A Chaos raiding fleet encountered Eldar Corsairs while attempting to establish a hidden supply route. Both sides suffered heavy losses before the Eldar withdrew into the system's dust clouds.",
+            "battle_author": "Voidmaster Krail"
+        },
+        {
+            "battle_ID": 4,
+            "campaign_ID": 1,
+            "battle_system": 7,
+            "battle_faction1": 1,
+            "battle_faction2": 5,
+            "battle_points": 1800,
+            "battle_player1": "Imperial Navy",
+            "battle_player2": "Rebel Planetary Defence Fleet",
+            "battle_victoryPoints1": 1050,
+            "battle_victoryPoints2": 280,
+            "battle_report": "The Imperial Navy launched a punitive strike against a planetary defence fleet that had refused its tithe obligations. The defenders fought stubbornly but were eventually driven from orbit, leaving the planet isolated.",
+            "battle_author": "Captain Severian"
+        },
+        {
+            "battle_ID": 5,
+            "campaign_ID": 1,
+            "battle_system": 4,
+            "battle_faction1": 3,
+            "battle_faction2": 2,
+            "battle_points": 2500,
+            "battle_player1": "Ork Freebooterz",
+            "battle_player2": "Chaos Renegades",
+            "battle_victoryPoints1": 780,
+            "battle_victoryPoints2": 810,
+            "battle_report": "Two hostile fleets collided while competing for control of an abandoned orbital shipyard. The battle ended inconclusively after both commanders withdrew to repair their damaged vessels and reinforce their crews.",
+            "battle_author": "Mekboss Grimsnag"
+        },
+        {
+            "battle_ID": 6,
+            "campaign_ID": 2,
+            "battle_system": null,
+            "battle_faction1": null,
+            "battle_faction2": null,
+            "battle_points": null,
+            "battle_player1": "",
+            "battle_player2": "",
+            "battle_victoryPoints1": 0,
+            "battle_victoryPoints2": 0,
+            "battle_report": "",
+            "battle_author": ""
+        },
+        {
+            "battle_ID": 7,
+            "campaign_ID": 2,
+            "battle_system": null,
+            "battle_faction1": null,
+            "battle_faction2": null,
+            "battle_points": null,
+            "battle_player1": "",
+            "battle_player2": "",
+            "battle_victoryPoints1": 0,
+            "battle_victoryPoints2": 0,
+            "battle_report": "",
+            "battle_author": ""
+        },
+        {
+            "battle_ID": 8,
+            "campaign_ID": 2,
+            "battle_system": null,
+            "battle_faction1": null,
+            "battle_faction2": null,
+            "battle_points": null,
+            "battle_player1": "",
+            "battle_player2": "",
+            "battle_victoryPoints1": 0,
+            "battle_victoryPoints2": 0,
+            "battle_report": "",
+            "battle_author": ""
+        }
+    ]
 }

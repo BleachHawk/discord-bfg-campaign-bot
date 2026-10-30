@@ -65,9 +65,10 @@ export async function initializeDatabase(): Promise<void> {
     },
     {
       sql: `CREATE TABLE IF NOT EXISTS factions (
-        faction_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        faction_ID INTEGER PRIMARY KEY,
         faction_name TEXT NOT NULL,
-        short_name TEXT NOT NULL
+        short_name TEXT NOT NULL,
+        composite TEXT
       )`,
       args: [],
     },
@@ -135,6 +136,11 @@ export async function initializeDatabaseData() {
 
   for (var campaign in initData.campaigns) {
     await dbQueries.addCampaign(initData.campaigns[campaign]);
+  }
+
+  // test data
+  for (var battle in initData.battles) {
+    await dbQueries.addBattle(initData.battles[battle]);
   }
 
   console.log("DB: initial data created");
