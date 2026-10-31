@@ -45,7 +45,6 @@ export async function initializeDatabase(): Promise<void> {
         system_name TEXT NOT NULL,
         description TEXT NOT NULL,
         type TEXT NOT NULL,
-        currentFaction_ID INTEGER,
         subsector_ID INTEGER NOT NULL,
         FOREIGN KEY (subsector_ID) REFERENCES subsectors(subsector_ID)
       )`,
@@ -68,7 +67,8 @@ export async function initializeDatabase(): Promise<void> {
         faction_ID INTEGER PRIMARY KEY,
         faction_name TEXT NOT NULL,
         short_name TEXT NOT NULL,
-        composite TEXT
+        composite TEXT DEFAULT NULL
+          CHECK (composite IS NULL OR json_valid(composite))
       )`,
       args: [],
     },

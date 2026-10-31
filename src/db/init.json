@@ -243,6 +243,11 @@
     ],
     "factions": [
         {
+            "faction_ID": 100,
+            "faction_name": "Contested",
+            "short_name": "contested"
+        },
+        {
             "faction_ID": 1,
             "faction_name": "Imperium",
             "short_name": "imperial",
@@ -252,13 +257,13 @@
             "faction_ID": 2,
             "faction_name": "Chaos & Renegades",
             "short_name": "renegades",
-            "composite": [ 7, 9, 11, 17]
+            "composite": [ 7, 9, 17]
         },
         {
             "faction_ID": 3,
             "faction_name": "Xenos",
             "short_name": "xenos",
-            "composite": [ 6, 8, 10, 12, 13 ]
+            "composite": [ 6, 8, 10, 11, 12, 13 ]
         },
         {
             "faction_ID": 4,
@@ -298,7 +303,7 @@
         {
             "faction_ID": 11,
             "faction_name": "Eldar Corsairs",
-            "short_name": "corsair"
+            "short_name": "corsairs"
         },
         {
             "faction_ID": 12,
@@ -336,8 +341,8 @@
             "battle_ID": 1,
             "campaign_ID": 1,
             "battle_system": 3,
-            "battle_faction1": 1,
-            "battle_faction2": 2,
+            "battle_faction1": 4,
+            "battle_faction2": 7,
             "battle_points": 1500,
             "battle_player1": "Imperial Navy",
             "battle_player2": "Chaos Renegades",
@@ -350,8 +355,8 @@
             "battle_ID": 2,
             "campaign_ID": 1,
             "battle_system": 5,
-            "battle_faction1": 1,
-            "battle_faction2": 3,
+            "battle_faction1": 4,
+            "battle_faction2": 9,
             "battle_points": 2000,
             "battle_player1": "Imperial Navy",
             "battle_player2": "Ork Freebooterz",
@@ -364,8 +369,8 @@
             "battle_ID": 3,
             "campaign_ID": 1,
             "battle_system": 2,
-            "battle_faction1": 2,
-            "battle_faction2": 4,
+            "battle_faction1": 7,
+            "battle_faction2": 11,
             "battle_points": 1200,
             "battle_player1": "Chaos Renegades",
             "battle_player2": "Eldar Corsairs",
@@ -378,8 +383,8 @@
             "battle_ID": 4,
             "campaign_ID": 1,
             "battle_system": 7,
-            "battle_faction1": 1,
-            "battle_faction2": 5,
+            "battle_faction1": 4,
+            "battle_faction2": 17,
             "battle_points": 1800,
             "battle_player1": "Imperial Navy",
             "battle_player2": "Rebel Planetary Defence Fleet",
@@ -393,7 +398,7 @@
             "campaign_ID": 1,
             "battle_system": 4,
             "battle_faction1": 3,
-            "battle_faction2": 2,
+            "battle_faction2": 9,
             "battle_points": 2500,
             "battle_player1": "Ork Freebooterz",
             "battle_player2": "Chaos Renegades",
@@ -443,6 +448,58 @@
             "battle_victoryPoints2": 0,
             "battle_report": "",
             "battle_author": ""
+        },
+        {
+            "battle_ID": 9,
+            "campaign_ID": 1,
+            "battle_system": 1,
+            "battle_faction1": 5,
+            "battle_faction2": 9,
+            "battle_points": 2500,
+            "battle_player1": "AdMech",
+            "battle_player2": "Chaos Renegades",
+            "battle_victoryPoints1": 500,
+            "battle_victoryPoints2": 100,
+            "battle_author": "asdf"
+        },
+        {
+            "battle_ID": 10,
+            "campaign_ID": 1,
+            "battle_system": 1,
+            "battle_faction1": 4,
+            "battle_faction2": 7,
+            "battle_points": 2500,
+            "battle_player1": "Imperial Navy",
+            "battle_player2": "Chaos Renegades",
+            "battle_victoryPoints1": 500,
+            "battle_victoryPoints2": 100,
+            "battle_author": "asdf"
+        },
+        {
+            "battle_ID": 11,
+            "campaign_ID": 1,
+            "battle_system": 1,
+            "battle_faction1": 6,
+            "battle_faction2": 5,
+            "battle_points": 2500,
+            "battle_player1": "Tyranids",
+            "battle_player2": "AdMech",
+            "battle_victoryPoints1": 780,
+            "battle_victoryPoints2": 10,
+            "battle_author": "asdf"
+        },
+        {
+            "battle_ID": 12,
+            "campaign_ID": 1,
+            "battle_system": 2,
+            "battle_faction1": 17,
+            "battle_faction2": 11,
+            "battle_points": 1200,
+            "battle_player1": "Chaos Renegades",
+            "battle_player2": "Eldar Corsairs",
+            "battle_victoryPoints1": 670,
+            "battle_victoryPoints2": 240,
+            "battle_author": "asdf"
         }
     ]
 }

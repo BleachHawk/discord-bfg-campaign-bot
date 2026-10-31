@@ -18,7 +18,7 @@ export const sectors = sqliteTable("sectors", {
 export const subsectors = sqliteTable("subsectors", {
   subsector_ID: integer("subsector_ID").primaryKey(),
   subsector_name: text("subsector_name").notNull(),
-  description: text("description"),
+  description: text("description").notNull().default(''),
   polygon_points: text("polygon_points", { mode: "json" })
     .$type<[number, number][]>()
     .notNull()
@@ -33,9 +33,8 @@ export const systems = sqliteTable("systems", {
   system_name: text("system_name").notNull(),
   location_x: integer("location_x").primaryKey(),
   location_y: integer("location_y").primaryKey(),
-  description: text("description"),
+  description: text("description").notNull().default(''),
   type: text("type").notNull(),
-  currentFaction_ID: integer("currentFaction_ID"),
   subsector_ID: integer("subsector_ID")
     .notNull()
     .references(() => subsectors.subsector_ID),
@@ -45,7 +44,8 @@ export const factions = sqliteTable("factions", {
   faction_ID: integer("faction_ID").primaryKey(),
   faction_name: text("faction_name").notNull(),
   short_name: text("short_name").notNull(),
-  composite: text("composite"),
+  composite: text("composite", { mode: "json" })
+    .$type<number[]>()
 });
 
 export const battles = sqliteTable("battles", {
@@ -53,12 +53,12 @@ export const battles = sqliteTable("battles", {
   campaign_ID: integer("campaign_ID")
     .notNull()
     .references(() => campaigns.campaign_ID),
-  battle_system: integer("battle_system"),
-  battle_faction1: integer("battle_faction1")
+  battle_system: integer("battle_system").notNull(),
+  battle_faction1: integer("battle_faction1").notNull()
     .references(() => factions.faction_ID),
-  battle_faction2: integer("battle_faction2")
+  battle_faction2: integer("battle_faction2").notNull()
     .references(() => factions.faction_ID),
-  battle_points: integer("battle_points"),
+  battle_points: integer("battle_points").notNull(),
   battle_player1: text("battle_player1"),
   battle_player2: text("battle_player2"),
   battle_victoryPoints1: integer("battle_victoryPoints1")
@@ -68,7 +68,7 @@ export const battles = sqliteTable("battles", {
     .notNull()
     .default(0),
   battle_report: text("battle_report"),
-  battle_author: text("battle_author"),
+  battle_author: text("battle_author").notNull(),
 });
 
 export const campaignsRelations = relations(campaigns, ({ one }) => ({
