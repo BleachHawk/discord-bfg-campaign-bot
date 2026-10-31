@@ -183,10 +183,90 @@
             "description": "Third subsector."
         }
     ],
+    "system_types": [
+        {
+            "system_type_ID": 1,
+            "system_type_name": "Hive World",
+            "description": "",
+            "importance": 5
+        },
+        {
+            "system_type_ID": 2,
+            "system_type_name": "Forge World",
+            "description": "",
+            "importance": 5
+        },
+        {
+            "system_type_ID": 3,
+            "system_type_name": "Dockyard",
+            "description": "",
+            "importance": 5
+        },
+        {
+            "system_type_ID": 4,
+            "system_type_name": "Shrine World",
+            "description": "",
+            "importance": 4
+        },
+        {
+            "system_type_ID": 5,
+            "system_type_name": "Fortress World",
+            "description": "",
+            "importance": 4
+        },
+        {
+            "system_type_ID": 6,
+            "system_type_name": "Industrial World",
+            "description": "",
+            "importance": 3
+        },
+        {
+            "system_type_ID": 7,
+            "system_type_name": "Civilised World",
+            "description": "",
+            "importance": 2
+        },
+        {
+            "system_type_ID": 8,
+            "system_type_name": "Mining World",
+            "description": "",
+            "importance": 2
+        },
+        {
+            "system_type_ID": 9,
+            "system_type_name": "Agri World",
+            "description": "",
+            "importance": 2
+        },
+        {
+            "system_type_ID": 10,
+            "system_type_name": "Knight World",
+            "description": "",
+            "importance": 2
+        },
+        {
+            "system_type_ID": 11,
+            "system_type_name": "Research Station",
+            "description": "",
+            "importance": 2
+        },
+        {
+            "system_type_ID": 12,
+            "system_type_name": "Feudal World",
+            "description": "",
+            "importance": 1
+        },
+        {
+            "system_type_ID": 13,
+            "system_type_name": "Penal World",
+            "description": "",
+            "importance": 1
+        }
+    ],
     "systems": [
         {
             "system_name": "Hive",
-            "type": "hive",
+            "system_type_ID": 1,
             "location_x": 22,
             "location_y": 42,
             "subsector_ID": 1,
@@ -194,7 +274,7 @@
         },
         {
             "system_name": "Forge",
-            "type": "forge",
+            "system_type_ID": 2,
             "location_x": 27,
             "location_y": 25,
             "subsector_ID": 1,
@@ -202,7 +282,7 @@
         },
         {
             "system_name": "Civilised World",
-            "type": "civilised",
+            "system_type_ID": 7,
             "location_x": 57,
             "location_y": 45,
             "subsector_ID": 2,
@@ -210,7 +290,7 @@
         },
         {
             "system_name": "Knight World",
-            "type": "knight",
+            "system_type_ID": 10,
             "location_x": 50,
             "location_y": 55,
             "subsector_ID": 2,
@@ -218,23 +298,23 @@
         },
         {
             "system_name": "Research Station",
-            "type": "research_station",
+            "system_type_ID": 11,
             "location_x": 20,
             "location_y": 75,
             "subsector_ID": 3,
             "description": "A research station."
         },
         {
-            "system_name": "Dead World",
-            "type": "dead",
+            "system_name": "Penal World",
+            "system_type_ID": 13,
             "location_x": 76,
             "location_y": 60,
             "subsector_ID": 4,
-            "description": "A dead world."
+            "description": "A dead world with a huge penal colony."
         },
         {
             "system_name": "Mining Asteroid",
-            "type": "mine_asteroid",
+            "system_type_ID": 8,
             "location_x": 90,
             "location_y": 35,
             "subsector_ID": 4,
@@ -410,10 +490,10 @@
         {
             "battle_ID": 6,
             "campaign_ID": 2,
-            "battle_system": null,
-            "battle_faction1": null,
-            "battle_faction2": null,
-            "battle_points": null,
+            "battle_system": 99,
+            "battle_faction1": 1,
+            "battle_faction2": 2,
+            "battle_points": 1,
             "battle_player1": "",
             "battle_player2": "",
             "battle_victoryPoints1": 0,
@@ -424,10 +504,10 @@
         {
             "battle_ID": 7,
             "campaign_ID": 2,
-            "battle_system": null,
-            "battle_faction1": null,
-            "battle_faction2": null,
-            "battle_points": null,
+            "battle_system": 99,
+            "battle_faction1": 1,
+            "battle_faction2": 2,
+            "battle_points": 1,
             "battle_player1": "",
             "battle_player2": "",
             "battle_victoryPoints1": 0,
@@ -438,10 +518,10 @@
         {
             "battle_ID": 8,
             "campaign_ID": 2,
-            "battle_system": null,
-            "battle_faction1": null,
-            "battle_faction2": null,
-            "battle_points": null,
+            "battle_system": 99,
+            "battle_faction1": 1,
+            "battle_faction2": 2,
+            "battle_points": 1,
             "battle_player1": "",
             "battle_player2": "",
             "battle_victoryPoints1": 0,

@@ -165,7 +165,12 @@ async function main() {
     const campaign = await dbQueries.getCampaignByDiscord(message.guild);
 
     let battle: typeof battles.$inferInsert = {
-      campaign_ID: campaign.campaign_ID
+      campaign_ID: campaign.campaign_ID,
+      battle_system: 0,
+      battle_faction1: 0,
+      battle_faction2: 0,
+      battle_points: 0,
+      battle_author: ''
     };
 
     let error = '';
@@ -238,12 +243,6 @@ async function main() {
       console.log('Adding battle: ' + JSON.stringify(battle));
       battle.battle_author = author.tag;
       await dbQueries.addBattle(battle);
-
-      // TODO: calculate control points
-      // 1. get all battles, filter for target system
-      // 2. calculate for each faction
-      // 3. update faction ID if a new faction has the most control points
-
       await message.channel.send('=== Battle Result has been logged ===');
     } else {
       console.log('Error: no battle to process');
