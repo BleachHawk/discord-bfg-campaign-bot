@@ -61,6 +61,7 @@ export async function initializeDatabase(): Promise<void> {
       sql: `CREATE TABLE IF NOT EXISTS systemTypes (
                 system_type_ID INTEGER PRIMARY KEY,
                 system_type_name TEXT NOT NULL,
+                short_name TEXT NOT NULL,
                 description TEXT NOT NULL,
                 importance INTEGER NOT NULL
             )`

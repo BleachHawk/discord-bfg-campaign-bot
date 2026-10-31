@@ -32,6 +32,7 @@ export const systemTypes = sqliteTable("systemTypes", {
   system_type_ID: integer("system_type_ID").primaryKey(),
   system_type_name: text("system_type_name").notNull(),
   description: text("description").notNull().default(''),
+  short_name: text("short_name").notNull(),
   importance: integer("importance").notNull(),
 });
 

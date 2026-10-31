@@ -187,78 +187,91 @@
         {
             "system_type_ID": 1,
             "system_type_name": "Hive World",
+            "short_name": "hive",
             "description": "",
             "importance": 5
         },
         {
             "system_type_ID": 2,
             "system_type_name": "Forge World",
+            "short_name": "forge",
             "description": "",
             "importance": 5
         },
         {
             "system_type_ID": 3,
             "system_type_name": "Dockyard",
+            "short_name": "dock",
             "description": "",
             "importance": 5
         },
         {
             "system_type_ID": 4,
             "system_type_name": "Shrine World",
+            "short_name": "shrine",
             "description": "",
             "importance": 4
         },
         {
             "system_type_ID": 5,
             "system_type_name": "Fortress World",
+            "short_name": "fortress",
             "description": "",
             "importance": 4
         },
         {
             "system_type_ID": 6,
             "system_type_name": "Industrial World",
+            "short_name": "industrial",
             "description": "",
             "importance": 3
         },
         {
             "system_type_ID": 7,
             "system_type_name": "Civilised World",
+            "short_name": "civilised",
             "description": "",
             "importance": 2
         },
         {
             "system_type_ID": 8,
             "system_type_name": "Mining World",
+            "short_name": "mining",
             "description": "",
             "importance": 2
         },
         {
             "system_type_ID": 9,
             "system_type_name": "Agri World",
+            "short_name": "agri",
             "description": "",
             "importance": 2
         },
         {
             "system_type_ID": 10,
             "system_type_name": "Knight World",
+            "short_name": "knight",
             "description": "",
             "importance": 2
         },
         {
             "system_type_ID": 11,
             "system_type_name": "Research Station",
+            "short_name": "research_station",
             "description": "",
             "importance": 2
         },
         {
             "system_type_ID": 12,
             "system_type_name": "Feudal World",
+            "short_name": "feudal",
             "description": "",
             "importance": 1
         },
         {
             "system_type_ID": 13,
             "system_type_name": "Penal World",
+            "short_name": "penal",
             "description": "",
             "importance": 1
         }
