@@ -2,7 +2,10 @@ import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
 import * as schema from "./schema";
 import * as dbQueries from "./queries";
-import initData from './init.json';
+import factions from './init/factions.json';
+import systemTypes from './init/systemTypes.json';
+import campaigns from './init/campaign.json';
+import battlesDebug from './init/battles_debug.json';
 
 const dbFile = process.env.DB_FILE_NAME;
 if (!dbFile) {
@@ -158,43 +161,43 @@ export async function initializeDatabase(): Promise<void> {
 export async function initializeDatabaseData() {
   console.log("[DB] Starting initial data insertion");
 
-  for (const sector of Object.values(initData.sectors)) {
+  for (const sector of Object.values(campaigns.sectors)) {
     await logDbAction(`Insert sector: ${sector.sector_name}`, () =>
       dbQueries.addSector(sector)
     );
   }
 
-  for (const subsector of Object.values(initData.subsectors)) {
+  for (const subsector of Object.values(campaigns.subsectors)) {
     await logDbAction(`Insert subsector: ${subsector.subsector_name}`, () =>
-      dbQueries.addSubsector(subsector)
+      dbQueries.addSubsector(subsector as any) // ignore mismatch of polygon points
     );
   }
 
-  for (const systemType of Object.values(initData.system_types)) {
+  for (const systemType of Object.values(systemTypes.system_types)) {
     await logDbAction(`Insert system type: ${systemType.system_type_name}`, () =>
       dbQueries.addSystemType(systemType)
     );
   }
 
-  for (const system of Object.values(initData.systems)) {
+  for (const system of Object.values(campaigns.systems)) {
     await logDbAction(`Insert system: ${system.system_name}`, () =>
       dbQueries.addSystem(system)
     );
   }
 
-  for (const faction of Object.values(initData.factions)) {
+  for (const faction of Object.values(factions.factions)) {
     await logDbAction(`Insert faction: ${faction.faction_name}`, () =>
       dbQueries.addFaction(faction)
     );
   }
 
-  for (const campaign of Object.values(initData.campaigns)) {
+  for (const campaign of Object.values(campaigns.campaigns)) {
     await logDbAction(`Insert campaign: ${campaign.campaign_name}`, () =>
       dbQueries.addCampaign(campaign)
     );
   }
 
-  for (const battle of Object.values(initData.battles)) {
+  for (const battle of Object.values(battlesDebug.battles)) {
     await logDbAction(`Insert battle: ${battle.battle_ID}`, () =>
       dbQueries.addBattle(battle)
     );

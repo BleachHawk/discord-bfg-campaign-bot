@@ -42,9 +42,14 @@ export const systems = sqliteTable("systems", {
   location_x: integer("location_x"),
   location_y: integer("location_y"),
   description: text("description").notNull().default(''),
+  // TODO: add modifiers (moon, asteroid, asteroid_field, station, ...)?
   system_type_ID: integer("system_type_ID")
     .notNull()
     .references(() => systemTypes.system_type_ID),
+  // TODO: add world types (ice, ocean, desert, ...) with modifiers (death, ...)? 
+  // system_world_type_ID: integer()
+  //   .notNull()
+  //   .references(() => systemWorldTypes.system_world_type_ID),
   subsector_ID: integer("subsector_ID")
     .notNull()
     .references(() => subsectors.subsector_ID),

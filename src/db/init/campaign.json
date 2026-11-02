@@ -1,0 +1,244 @@
+{
+    "campaigns": [
+        {
+            "campaign_ID": 1,
+            "campaign_discord": "BFG Testserver",
+            "campaign_name": "Shadow over Discordia",
+            "campaign_sector_ID": 1,
+            "campaign_startDate": "2026-10-12"
+        },
+        {
+            "campaign_ID": 2,
+            "campaign_discord": "TEST",
+            "campaign_name": "TEST",
+            "campaign_sector_ID": 1,
+            "campaign_startDate": "2026-10-30"
+        }
+    ],
+    "sectors": [
+        {
+            "sector_ID": 1,
+            "sector_name": "Discordia Sector"
+        }
+    ],
+    "subsectors": [
+        {
+            "subsector_ID": 1,
+            "subsector_name": "Mortivane",
+            "sector_ID": 1,
+            "polygon_points": [
+                [
+                    24,
+                    9.2
+                ],
+                [
+                    19,
+                    21.2
+                ],
+                [
+                    9.4,
+                    31.8
+                ],
+                [
+                    4,
+                    45.2
+                ],
+                [
+                    3.6,
+                    64.4
+                ],
+                [
+                    22.6,
+                    54.6
+                ],
+                [
+                    41.4,
+                    54.8
+                ],
+                [
+                    43.6,
+                    21.4
+                ],
+                [
+                    33,
+                    9.2
+                ]
+            ],
+            "description": "First subsector."
+        },
+        {
+            "subsector_ID": 2,
+            "subsector_name": "Severant Reach",
+            "sector_ID": 1,
+            "polygon_points": [
+                [
+                    43.6,
+                    21.4
+                ],
+                [
+                    41.4,
+                    54.8
+                ],
+                [
+                    61.6,
+                    80.6
+                ],
+                [
+                    65.8,
+                    80.6
+                ],
+                [
+                    63.8,
+                    17.6
+                ],
+                [
+                    55.2,
+                    12.8
+                ],
+                [
+                    50.4,
+                    21
+                ]
+            ],
+            "description": "Second subsector."
+        },
+        {
+            "subsector_ID": 4,
+            "subsector_name": "Vesperax",
+            "sector_ID": 1,
+            "polygon_points": [
+                [
+                    63.8,
+                    17.6
+                ],
+                [
+                    72.4,
+                    16.6
+                ],
+                [
+                    79.4,
+                    22.8
+                ],
+                [
+                    89.2,
+                    23.6
+                ],
+                [
+                    94.2,
+                    53.4
+                ],
+                [
+                    86.2,
+                    69.8
+                ],
+                [
+                    86,
+                    84.4
+                ],
+                [
+                    69.8,
+                    86.6
+                ],
+                [
+                    65.8,
+                    80.6
+                ]
+            ],
+            "description": "Fourth subsector."
+        },
+        {
+            "subsector_ID": 3,
+            "subsector_name": "Caligora",
+            "sector_ID": 1,
+            "polygon_points": [
+                [
+                    22.6,
+                    54.6
+                ],
+                [
+                    41.4,
+                    54.8
+                ],
+                [
+                    61.6,
+                    80.6
+                ],
+                [
+                    57.6,
+                    93.2
+                ],
+                [
+                    37.2,
+                    96.8
+                ],
+                [
+                    13.8,
+                    90
+                ],
+                [
+                    3.6,
+                    64.4
+                ]
+            ],
+            "description": "Third subsector."
+        }
+    ],
+    "systems": [
+        {
+            "system_name": "Hive",
+            "system_type_ID": 1,
+            "location_x": 22,
+            "location_y": 42,
+            "subsector_ID": 1,
+            "description": "A major Hiveworld."
+        },
+        {
+            "system_name": "Forge",
+            "system_type_ID": 2,
+            "location_x": 27,
+            "location_y": 25,
+            "subsector_ID": 1,
+            "description": "A major Forgeworld."
+        },
+        {
+            "system_name": "Civilised World",
+            "system_type_ID": 7,
+            "location_x": 57,
+            "location_y": 45,
+            "subsector_ID": 2,
+            "description": "A civilised world."
+        },
+        {
+            "system_name": "Knight World",
+            "system_type_ID": 10,
+            "location_x": 50,
+            "location_y": 55,
+            "subsector_ID": 2,
+            "description": "A Knight world."
+        },
+        {
+            "system_name": "Research Station",
+            "system_type_ID": 11,
+            "location_x": 20,
+            "location_y": 75,
+            "subsector_ID": 3,
+            "description": "A research station."
+        },
+        {
+            "system_name": "Penal World",
+            "system_type_ID": 13,
+            "location_x": 76,
+            "location_y": 60,
+            "subsector_ID": 4,
+            "description": "A dead world with a huge penal colony."
+        },
+        {
+            "system_name": "Mining Asteroid",
+            "system_type_ID": 8,
+            "location_x": 90,
+            "location_y": 35,
+            "subsector_ID": 4,
+            "description": "An important mining asteroid."
+        }
+    ]
+}

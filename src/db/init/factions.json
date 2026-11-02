@@ -1,0 +1,97 @@
+{
+    "factions": [
+        {
+            "faction_ID": 100,
+            "faction_name": "Contested",
+            "short_name": "contested"
+        },
+        {
+            "faction_ID": 1,
+            "faction_name": "Imperium",
+            "short_name": "imperial",
+            "composite": [ 4, 5, 14, 15, 16 ]
+        },
+        {
+            "faction_ID": 2,
+            "faction_name": "Chaos & Renegades",
+            "short_name": "renegades",
+            "composite": [ 7, 9, 17]
+        },
+        {
+            "faction_ID": 3,
+            "faction_name": "Xenos",
+            "short_name": "xenos",
+            "composite": [ 6, 8, 10, 11, 12, 13 ]
+        },
+        {
+            "faction_ID": 4,
+            "faction_name": "Imperial Navy",
+            "short_name": "navy"
+        },
+        {
+            "faction_ID": 5,
+            "faction_name": "Adeptus Mechanicus",
+            "short_name": "admech"
+        },
+        {
+            "faction_ID": 6,
+            "faction_name": "Tyranids",
+            "short_name": "tyranid"
+        },
+        {
+            "faction_ID": 7,
+            "faction_name": "Chaos",
+            "short_name": "chaos"
+        },
+        {
+            "faction_ID": 8,
+            "faction_name": "Tau",
+            "short_name": "tau"
+        },
+        {
+            "faction_ID": 9,
+            "faction_name": "Orks",
+            "short_name": "orks"
+        },
+        {
+            "faction_ID": 10,
+            "faction_name": "Eldar Craftworld",
+            "short_name": "craftworld"
+        },
+        {
+            "faction_ID": 11,
+            "faction_name": "Eldar Corsairs",
+            "short_name": "corsairs"
+        },
+        {
+            "faction_ID": 12,
+            "faction_name": "Dark Eldar",
+            "short_name": "darkeldar"
+        },
+        {
+            "faction_ID": 13,
+            "faction_name": "Necrons",
+            "short_name": "necrons"
+        },
+        {
+            "faction_ID": 14,
+            "faction_name": "Space Marines",
+            "short_name": "marines"
+        },
+        {
+            "faction_ID": 15,
+            "faction_name": "Inquisition",
+            "short_name": "inq"
+        },
+        {
+            "faction_ID": 16,
+            "faction_name": "Rogue Trader",
+            "short_name": "rogue"
+        },
+        {
+            "faction_ID": 17,
+            "faction_name": "Wolfpacks (Pirates)",
+            "short_name": "pirates"
+        }
+    ]
+}

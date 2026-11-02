@@ -92,6 +92,7 @@ async function main() {
    * @returns true / false
    */
   async function userCanSubmit(user: string): Promise<boolean> {
+    // TODO: rework but first the correct author has to be submitted in a battle (currently always ticket tool)
     // // get submissions from DB
     // const submissions = new Map<string, number[]>()
     // const now = Date.now();
@@ -104,10 +105,9 @@ async function main() {
     //   // 'WARN: the user <user> has submitted 2 results in the last 7 days'
     //   return false;
     // }
-
     // recent.push(now);
-    // // TODO: update submissions in DB
-    // // submissions.set(user, recent);
+    // TODO: update submissions in DB
+    // submissions.set(user, recent);
 
     return true;
   }
