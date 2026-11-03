@@ -4,19 +4,52 @@
             "campaign_ID": 1,
             "campaign_discord": "BFG Testserver",
             "campaign_name": "Shadow over Discordia",
-            "campaign_sector_ID": 1,
             "campaign_startDate": "2026-10-12"
         },
         {
             "campaign_ID": 2,
             "campaign_discord": "TEST",
             "campaign_name": "TEST",
-            "campaign_sector_ID": 1,
             "campaign_startDate": "2026-10-30"
+        }
+    ],
+    "campaignPhases": [
+        {
+            "campaign_ID": 1,
+            "name": "Vanguard Engagements",
+            "runtime": "month",
+            "objective": "Secure initial footholds and strategic orbital space.",
+            "description": "Scouting forces, planetfall preparation, and border skirmishes across Discordia's systems.",
+            "battle_size": "750 – 1,000 Points"
+        },
+        {
+            "campaign_ID": 1,
+            "name": "Fleet Escalation",
+            "runtime": "month",
+            "objective": "Fight for dominance in the Subsectors.",
+            "description": "Main line-of-battle fleets clash over primary objectives in the sector core.",
+            "battle_size": "1,250 – 1,750 Points"
+        },
+        {
+            "campaign_ID": 1,
+            "name": "The Discordia Anomaly",
+            "runtime": "month",
+            "objective": "Sector-wide environmental rules apply to all games.",
+            "description": "A sector-wide catastrophe erupts (e.g., Warp Storm/Rift).",
+            "battle_size": "1,500 – 2,000 Points"
+        },
+        {
+            "campaign_ID": 1,
+            "name": "Endgame",
+            "runtime": "month",
+            "objective": "All remaining systems channel their power directly into the final battle for Discordia Prime.",
+            "description": "The final assault on the sector capital.",
+            "battle_size": "2,000+ Points / Apocalypse Battles"
         }
     ],
     "sectors": [
         {
+            "campaign_ID": 1,
             "sector_ID": 1,
             "sector_name": "Discordia Sector"
         }
@@ -201,12 +234,12 @@
             "description": "A major Forgeworld."
         },
         {
-            "system_name": "Civilised World",
+            "system_name": "Stewart",
             "system_type_ID": 7,
             "location_x": 57,
             "location_y": 45,
             "subsector_ID": 2,
-            "description": "A civilised world."
+            "description": "A stable world with an unusually thriving community of theaters and plays."
         },
         {
             "system_name": "Knight World",
@@ -217,12 +250,12 @@
             "description": "A Knight world."
         },
         {
-            "system_name": "Research Station",
+            "system_name": "Koenig Station",
             "system_type_ID": 11,
             "location_x": 20,
             "location_y": 75,
             "subsector_ID": 3,
-            "description": "A research station."
+            "description": "An ancient research station."
         },
         {
             "system_name": "Penal World",

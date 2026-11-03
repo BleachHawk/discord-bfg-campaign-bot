@@ -5,14 +5,28 @@ export const campaigns = sqliteTable("campaigns", {
   campaign_ID: integer("campaign_ID").primaryKey(),
   campaign_discord: text("campaign_discord").notNull(),
   campaign_name: text("campaign_name").notNull(),
-  campaign_sector_ID: integer("campaign_sector_ID").notNull()
-    .references(() => sectors.sector_ID),
   campaign_startDate: text("campaign_startDate"),
+});
+
+export const campaignPhases = sqliteTable("campaignPhases", {
+  campaign_phase_ID: integer("campaign_phase_ID").primaryKey(),
+  name: text("name").notNull().default(''),
+  runtime: text("runtime").notNull().default('month'),
+  objective: text("objective").notNull().default(''),
+  description: text("description").notNull().default(''),
+  battle_size: text("battle_size").notNull().default(''),
+  campaign_ID: integer("campaign_ID")
+    .notNull()
+    .references(() => campaigns.campaign_ID),
 });
 
 export const sectors = sqliteTable("sectors", {
   sector_ID: integer("sector_ID").primaryKey(),
   sector_name: text("sector_name").notNull(),
+  campaign_ID: integer("campaign_ID")
+    .notNull()
+    .unique()
+    .references(() => campaigns.campaign_ID),
 });
 
 export const subsectors = sqliteTable("subsectors", {
@@ -88,18 +102,26 @@ export const battles = sqliteTable("battles", {
 
 export const campaignsRelations = relations(campaigns, ({ one, many }) => ({
   sector: one(sectors, {
-    fields: [campaigns.campaign_sector_ID],
-    references: [sectors.sector_ID],
+    fields: [campaigns.campaign_ID],
+    references: [sectors.campaign_ID],
   }),
   battles: many(battles),
+  campaignPhases: many(campaignPhases),
 }));
 
 export const sectorsRelations = relations(sectors, ({ one, many }) => ({
   campaign: one(campaigns, {
-    fields: [sectors.sector_ID],
-    references: [campaigns.campaign_sector_ID],
+    fields: [sectors.campaign_ID],
+    references: [campaigns.campaign_ID],
   }),
   subsectors: many(subsectors),
+}));
+
+export const campaignPhasesRelations = relations(campaignPhases, ({ one }) => ({
+  campaign: one(campaigns, {
+    fields: [campaignPhases.campaign_ID],
+    references: [campaigns.campaign_ID],
+  }),
 }));
 
 export const subsectorsRelations = relations(subsectors, ({ one, many }) => ({
@@ -115,18 +137,19 @@ export const systemsRelations = relations(systems, ({ one }) => ({
     fields: [systems.subsector_ID],
     references: [subsectors.subsector_ID],
   }),
+  systemType: one(systemTypes, {
+    fields: [systems.system_type_ID],
+    references: [systemTypes.system_type_ID],
+  }),
+}));
+
+export const systemTypesRelations = relations(systemTypes, ({ many }) => ({
+  systems: many(systems),
 }));
 
 export const battlesRelations = relations(battles, ({ one }) => ({
   campaign: one(campaigns, {
     fields: [battles.campaign_ID],
     references: [campaigns.campaign_ID],
-  }),
-}));
-
-export const systemTypesRelations = relations(systems, ({ one }) => ({
-  systemType: one(systemTypes, {
-    fields: [systems.system_type_ID],
-    references: [systemTypes.system_type_ID],
   }),
 }));

@@ -40,10 +40,35 @@ export async function initializeDatabase(): Promise<void> {
 
   const statements = [
     {
+      name: "Create campaigns table",
+      sql: `CREATE TABLE IF NOT EXISTS campaigns (
+                campaign_ID INTEGER PRIMARY KEY,
+                campaign_name TEXT NOT NULL,
+                campaign_discord TEXT NOT NULL,
+                campaign_startDate TEXT NOT NULL
+            )`
+    },
+    {
+      name: "Create campaignPhases table",
+      sql: `CREATE TABLE IF NOT EXISTS campaignPhases (
+                campaign_phase_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                runtime TEXT NOT NULL,
+                objective TEXT NOT NULL,
+                description TEXT NOT NULL,
+                battle_size TEXT NOT NULL,
+                campaign_ID INTEGER NOT NULL,
+                FOREIGN KEY (campaign_ID) REFERENCES campaigns(campaign_ID)
+            )`
+    },
+    {
       name: "Create sectors table",
       sql: `CREATE TABLE IF NOT EXISTS sectors (
                 sector_ID INTEGER PRIMARY KEY,
-                sector_name TEXT NOT NULL
+                sector_name TEXT NOT NULL,
+                campaign_ID INTEGER NOT NULL,
+                UNIQUE (campaign_ID, sector_name),
+                FOREIGN KEY (campaign_ID) REFERENCES campaigns(campaign_ID)
             )`
     },
     {
@@ -84,18 +109,6 @@ export async function initializeDatabase(): Promise<void> {
             )`
     },
     {
-      name: "Create campaigns table",
-      sql: `CREATE TABLE IF NOT EXISTS campaigns (
-                campaign_ID INTEGER PRIMARY KEY,
-                campaign_name TEXT NOT NULL,
-                campaign_discord TEXT NOT NULL,
-                campaign_sector_ID INTEGER,
-                campaign_startDate TEXT,
-                FOREIGN KEY (campaign_sector_ID)
-                    REFERENCES sectors(sector_ID)
-            )`
-    },
-    {
       name: "Create factions table",
       sql: `CREATE TABLE IF NOT EXISTS factions (
                 faction_ID INTEGER PRIMARY KEY,
@@ -128,10 +141,10 @@ export async function initializeDatabase(): Promise<void> {
   ];
 
   for (const statement of statements) {
-    await logDbAction(statement.name, async() => {
+    await logDbAction(statement.name, async () => {
       try {
-         const result = await client.execute(statement.sql);
-         return result;
+        const result = await client.execute(statement.sql);
+        return result;
       } catch (error) {
         console.error("[DB] SQL:", statement.sql);
         console.error("[DB] Error:", error);
@@ -161,6 +174,18 @@ export async function initializeDatabase(): Promise<void> {
 export async function initializeDatabaseData() {
   console.log("[DB] Starting initial data insertion");
 
+  for (const campaign of Object.values(campaigns.campaigns)) {
+    await logDbAction(`Insert campaign: ${campaign.campaign_name}`, () =>
+      dbQueries.addCampaign(campaign)
+    );
+  }
+
+  for (const campaignPhase of Object.values(campaigns.campaignPhases)) {
+    await logDbAction(`Insert campaignPhase: ${campaignPhase.name}`, () =>
+      dbQueries.addCampaignPhase(campaignPhase)
+    );
+  }
+
   for (const sector of Object.values(campaigns.sectors)) {
     await logDbAction(`Insert sector: ${sector.sector_name}`, () =>
       dbQueries.addSector(sector)
@@ -188,12 +213,6 @@ export async function initializeDatabaseData() {
   for (const faction of Object.values(factions.factions)) {
     await logDbAction(`Insert faction: ${faction.faction_name}`, () =>
       dbQueries.addFaction(faction)
-    );
-  }
-
-  for (const campaign of Object.values(campaigns.campaigns)) {
-    await logDbAction(`Insert campaign: ${campaign.campaign_name}`, () =>
-      dbQueries.addCampaign(campaign)
     );
   }
 

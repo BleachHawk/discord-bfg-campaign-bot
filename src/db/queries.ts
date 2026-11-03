@@ -9,6 +9,7 @@ import {
   campaigns,
   factions,
   battles,
+  campaignPhases,
 } from "./schema";
 
 // -------------------------
@@ -20,6 +21,17 @@ export async function addCampaign(
 ) {
   const [result] = await db
     .insert(campaigns)
+    .values(data)
+    .returning();
+
+  return result;
+}
+
+export async function addCampaignPhase(
+  data: typeof campaignPhases.$inferInsert,
+) {
+  const [result] = await db
+    .insert(campaignPhases)
     .values(data)
     .returning();
 
