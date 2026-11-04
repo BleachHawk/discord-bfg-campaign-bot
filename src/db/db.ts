@@ -133,6 +133,7 @@ export async function initializeDatabase(): Promise<void> {
                 battle_author TEXT,
                 battle_victoryPoints1 INTEGER NOT NULL DEFAULT 0,
                 battle_victoryPoints2 INTEGER NOT NULL DEFAULT 0,
+                timestamp INTEGER NOT NULL,
                 FOREIGN KEY (campaign_ID) REFERENCES campaigns(campaign_ID),
                 FOREIGN KEY (battle_faction1) REFERENCES factions(faction_ID),
                 FOREIGN KEY (battle_faction2) REFERENCES factions(faction_ID)

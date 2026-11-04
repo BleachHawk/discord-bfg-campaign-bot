@@ -15,12 +15,12 @@ interface IField {
 
 const KEY_CREATED = 'Ticket Created';
 const KEY_CLOSED = 'Ticket Closed';
-const KEY_PLAYER_1 = 'Player 1';
-const KEY_PLAYER_2 = 'Player 2';
+const KEY_PLAYER_1 = 'Attacker';
+const KEY_PLAYER_2 = 'Defender';
 const KEY_SYSTEM = 'Target System';
 const KEY_POINT_LIMIT = 'Point Limit';
-const KEY_P1_VP = 'Player 1 Victory Points';
-const KEY_P2_VP = 'Player 2 Victory Points';
+const KEY_P1_VP = 'Attacker Victory Points';
+const KEY_P2_VP = 'Defender Victory Points';
 const KEY_BATTLE_REPORT = 'Narrative Battle Report';
 
 async function main() {
@@ -170,7 +170,8 @@ async function main() {
       battle_faction1: 0,
       battle_faction2: 0,
       battle_points: 0,
-      battle_author: ''
+      battle_author: '',
+      timestamp: 0
     };
 
     let error = '';
@@ -222,6 +223,8 @@ async function main() {
           break;
       }
     };
+
+    battle.timestamp = Date.now();
 
     if (error) {
       console.log('Error: ' + error);

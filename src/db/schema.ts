@@ -98,6 +98,7 @@ export const battles = sqliteTable("battles", {
     .default(0),
   battle_report: text("battle_report"),
   battle_author: text("battle_author").notNull(),
+  timestamp: integer("timestamp").notNull(),
 });
 
 export const campaignsRelations = relations(campaigns, ({ one, many }) => ({
