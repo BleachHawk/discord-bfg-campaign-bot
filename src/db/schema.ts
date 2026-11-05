@@ -97,6 +97,7 @@ export const battles = sqliteTable("battles", {
     .notNull()
     .default(0),
   battle_report: text("battle_report"),
+  battle_scenario: text("battle_scenario"),
   battle_author: text("battle_author").notNull(),
   timestamp: integer("timestamp").notNull(),
 });

@@ -130,6 +130,7 @@ export async function initializeDatabase(): Promise<void> {
                 battle_player1 TEXT,
                 battle_player2 TEXT,
                 battle_report TEXT,
+                battle_scenario TEXT,
                 battle_author TEXT,
                 battle_victoryPoints1 INTEGER NOT NULL DEFAULT 0,
                 battle_victoryPoints2 INTEGER NOT NULL DEFAULT 0,
