@@ -229,8 +229,8 @@
         {
             "system_name": "Epharim's Moon",
             "system_type_ID": 3,
-            "location_x": 21,
-            "location_y": 46.5,
+            "location_x": 19,
+            "location_y": 45.5,
             "subsector_ID": 1,
             "description": "A vast moon base."
         },
