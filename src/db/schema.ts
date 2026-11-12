@@ -42,6 +42,11 @@ export const subsectors = sqliteTable("subsectors", {
     .references(() => sectors.sector_ID),
 });
 
+export const capitalTypes = sqliteTable("capitalTypes", {
+  capital_type_ID: integer("capital_type_ID").primaryKey(),
+  name: text("name").notNull(),
+});
+
 export const systemTypes = sqliteTable("systemTypes", {
   system_type_ID: integer("system_type_ID").primaryKey(),
   system_type_name: text("system_type_name").notNull(),
@@ -67,6 +72,8 @@ export const systems = sqliteTable("systems", {
   subsector_ID: integer("subsector_ID")
     .notNull()
     .references(() => subsectors.subsector_ID),
+  capital_type_ID: integer('capital_type_ID')
+    .references(() => capitalTypes.capital_type_ID)
 });
 
 export const factions = sqliteTable("factions", {
@@ -143,9 +150,17 @@ export const systemsRelations = relations(systems, ({ one }) => ({
     fields: [systems.system_type_ID],
     references: [systemTypes.system_type_ID],
   }),
+  capitalType: one(capitalTypes, {
+    fields: [systems.capital_type_ID],
+    references: [capitalTypes.capital_type_ID],
+  }),
 }));
 
 export const systemTypesRelations = relations(systemTypes, ({ many }) => ({
+  systems: many(systems),
+}));
+
+export const systemCapitalRelations = relations(capitalTypes, ({ many }) => ({
   systems: many(systems),
 }));
 

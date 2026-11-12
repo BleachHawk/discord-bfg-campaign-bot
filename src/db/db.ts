@@ -3,6 +3,7 @@ import { createClient } from "@libsql/client";
 import * as schema from "./schema";
 import * as dbQueries from "./queries";
 import factions from './init/factions.json';
+import capitalTypes from './init/systemTypes.json';
 import systemTypes from './init/systemTypes.json';
 import campaigns from './init/campaign.json';
 import battlesDebug from './init/battles_debug.json';
@@ -85,6 +86,13 @@ export async function initializeDatabase(): Promise<void> {
             )`
     },
     {
+      name: "Create capitalTypes table",
+      sql: `CREATE TABLE IF NOT EXISTS capitalTypes (
+                capital_type_ID INTEGER PRIMARY KEY,
+                name TEXT NOT NULL
+            )`
+    },
+    {
       name: "Create systemTypes table",
       sql: `CREATE TABLE IF NOT EXISTS systemTypes (
                 system_type_ID INTEGER PRIMARY KEY,
@@ -104,8 +112,10 @@ export async function initializeDatabase(): Promise<void> {
                 description TEXT NOT NULL,
                 system_type_ID INTEGER NOT NULL,
                 subsector_ID INTEGER NOT NULL,
+                capital_type_ID INTEGER,
                 FOREIGN KEY (system_type_ID) REFERENCES systemTypes(system_type_ID),
-                FOREIGN KEY (subsector_ID) REFERENCES subsectors(subsector_ID)
+                FOREIGN KEY (subsector_ID) REFERENCES subsectors(subsector_ID),
+                FOREIGN KEY (capital_type_ID) REFERENCES capitalTypes(capital_type_ID)
             )`
     },
     {
@@ -200,6 +210,11 @@ export async function initializeDatabaseData() {
     );
   }
 
+  for (const capitalType of Object.values(capitalTypes.capital_types)) {
+    await logDbAction(`Insert capital type: ${capitalType.capital_type_ID}`, () =>
+      dbQueries.addCapitalType(capitalType)
+    );
+  }
   for (const systemType of Object.values(systemTypes.system_types)) {
     await logDbAction(`Insert system type: ${systemType.system_type_name}`, () =>
       dbQueries.addSystemType(systemType)

@@ -1,4 +1,14 @@
 {
+    "capital_types": [
+        {
+            "capital_type_ID": 1,
+            "name": "Sector capital"
+        },
+        {
+            "capital_type_ID": 2,
+            "name": "Subsector capital"
+        }
+    ],
     "system_types": [
         {
             "system_type_ID": 1,

@@ -223,7 +223,8 @@
             "location_x": 27,
             "location_y": 31,
             "subsector_ID": 1,
-            "description": "The subsector capital."
+            "description": "The subsector capital.",
+            "capital_type_ID": 2
         },
         {
             "system_name": "Epharim's Moon",
@@ -297,7 +298,8 @@
             "location_x": 49,
             "location_y": 52,
             "subsector_ID": 2,
-            "description": "The sector capital."
+            "description": "The sector capital.",
+            "capital_type_ID": 1
         },
         {
             "system_name": "Disforge",
@@ -387,7 +389,8 @@
             "location_x": 32,
             "location_y": 84,
             "subsector_ID": 3,
-            "description": "A minor hive world."
+            "description": "A minor hive world.",
+            "capital_type_ID": 2
         },
         {
             "system_name": "3 Civilised",
@@ -469,7 +472,8 @@
             "location_x": 86,
             "location_y": 31,
             "subsector_ID": 4,
-            "description": "A civilised world."
+            "description": "A civilised world.",
+            "capital_type_ID": 2
         },
         {
             "system_name": "4 Penal",

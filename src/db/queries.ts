@@ -4,6 +4,7 @@ import { db } from "./db";
 import {
   sectors,
   subsectors,
+  capitalTypes,
   systemTypes,
   systems,
   campaigns,
@@ -95,6 +96,17 @@ export async function addSubsector(
 // -------------------------
 // SYSTEMS
 // -------------------------
+
+export async function addCapitalType(
+  data: typeof capitalTypes.$inferInsert,
+) {
+  const [result] = await db
+    .insert(capitalTypes)
+    .values(data)
+    .returning();
+
+  return result;
+}
 
 export async function addSystemType(
   data: typeof systemTypes.$inferInsert,
