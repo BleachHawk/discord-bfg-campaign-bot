@@ -90,6 +90,13 @@
             "short_name": "penal",
             "description": "Penal World is a classification given by the Imperium, to worlds that are used to house Human convicts who have broken its laws.",
             "importance": 0.75
+        },
+        {
+            "system_type_ID": 14,
+            "system_type_name": "Feral World",
+            "short_name": "feral",
+            "description": "The populations of Feral Worlds have long ago regressed to primal savagery, often over very long periods of isolation. The technological level of these worlds remains pre-black powder or even Stone Age. Often the population consists of hunter-gatherer societies using primitive tools and weapons, and in almost all cases human culture is based around the interactions of various tribes, gangs or creeds. Designation 'Phi Lambda'.",
+            "importance": 0.75
         }
     ]
 }

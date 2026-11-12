@@ -136,6 +136,42 @@
             "description": "Second subsector."
         },
         {
+            "subsector_ID": 3,
+            "subsector_name": "Caligora",
+            "sector_ID": 1,
+            "polygon_points": [
+                [
+                    22.6,
+                    54.6
+                ],
+                [
+                    41.4,
+                    54.8
+                ],
+                [
+                    61.6,
+                    80.6
+                ],
+                [
+                    57.6,
+                    93.2
+                ],
+                [
+                    37.2,
+                    96.8
+                ],
+                [
+                    13.8,
+                    90
+                ],
+                [
+                    3.6,
+                    64.4
+                ]
+            ],
+            "description": "Third subsector."
+        },
+        {
             "subsector_ID": 4,
             "subsector_name": "Vesperax",
             "sector_ID": 1,
@@ -178,100 +214,318 @@
                 ]
             ],
             "description": "Fourth subsector."
-        },
-        {
-            "subsector_ID": 3,
-            "subsector_name": "Caligora",
-            "sector_ID": 1,
-            "polygon_points": [
-                [
-                    22.6,
-                    54.6
-                ],
-                [
-                    41.4,
-                    54.8
-                ],
-                [
-                    61.6,
-                    80.6
-                ],
-                [
-                    57.6,
-                    93.2
-                ],
-                [
-                    37.2,
-                    96.8
-                ],
-                [
-                    13.8,
-                    90
-                ],
-                [
-                    3.6,
-                    64.4
-                ]
-            ],
-            "description": "Third subsector."
         }
     ],
     "systems": [
         {
-            "system_name": "Hive",
-            "system_type_ID": 1,
-            "location_x": 22,
-            "location_y": 42,
+            "system_name": "Throum Redoubt",
+            "system_type_ID": 5,
+            "location_x": 27,
+            "location_y": 31,
             "subsector_ID": 1,
-            "description": "A major Hiveworld."
+            "description": "The subsector capital."
         },
         {
-            "system_name": "Forge",
-            "system_type_ID": 2,
-            "location_x": 27,
-            "location_y": 25,
+            "system_name": "Epharim's Moon",
+            "system_type_ID": 3,
+            "location_x": 21,
+            "location_y": 46.5,
             "subsector_ID": 1,
+            "description": "A vast moon base."
+        },
+        {
+            "system_name": "Wynterhaven",
+            "system_type_ID": 12,
+            "location_x": 30,
+            "location_y": 22,
+            "subsector_ID": 1,
+            "description": "A huge planet mostly covered in freezing cold forrests or stone. The local lords reside in lavish castles atop their mountain spires."
+        },
+        {
+            "system_name": "Mac'thulu",
+            "system_type_ID": 14,
+            "location_x": 15,
+            "location_y": 35,
+            "subsector_ID": 1,
+            "description": "The original name of this world is lost. The small, dark planet is inhabited by violent tribes organized in 'cults of steel'. A lone mechanicus outpost is located at the northern pole, harvesting and occasionally trading in rare materials."
+        },
+        {
+            "system_name": "Shrine",
+            "system_type_ID": 4,
+            "location_x": 30,
+            "location_y": 13,
+            "subsector_ID": 1,
+            "description": "A shrine world."
+        },
+        {
+            "system_name": "Agri",
+            "system_type_ID": 9,
+            "location_x": 40,
+            "location_y": 26,
+            "subsector_ID": 1,
+            "description": "A agri world."
+        },
+        {
+            "system_name": "Mining",
+            "system_type_ID": 8,
+            "location_x": 10,
+            "location_y": 56,
+            "subsector_ID": 1,
+            "description": "A mining world."
+        },
+        {
+            "system_name": "Civilised",
+            "system_type_ID": 7,
+            "location_x": 32,
+            "location_y": 48,
+            "subsector_ID": 1,
+            "description": "A civilised world."
+        },
+        {
+            "system_name": "S727",
+            "system_type_ID": 11,
+            "location_x": 21.5,
+            "location_y": 54,
+            "subsector_ID": 1,
+            "description": "A mysterious, small station orbiting a gas giant. It frequently broadcasts low-powered transmissions in an anknown language. The station and these transmissions have been analyzed by the Adeptus Mechanicus but no conclusion has been found about its ancient purpose. Especially seeing that the low power of the transmissions don't reach far into the void. However, servitors were deployed to maintain the crude plasma reactor."
+        },
+
+
+        {
+            "system_name": "Discordia Prime",
+            "system_type_ID": 1,
+            "location_x": 49,
+            "location_y": 52,
+            "subsector_ID": 2,
+            "description": "The sector capital."
+        },
+        {
+            "system_name": "Disforge",
+            "system_type_ID": 2,
+            "location_x": 59,
+            "location_y": 38,
+            "subsector_ID": 2,
             "description": "A major Forgeworld."
+        },
+        {
+            "system_name": "Count Thobias' Station",
+            "system_type_ID": 3,
+            "location_x": 62,
+            "location_y": 59,
+            "subsector_ID": 2,
+            "description": "A major dockyard."
         },
         {
             "system_name": "Stewart",
             "system_type_ID": 7,
-            "location_x": 57,
+            "location_x": 54.5,
             "location_y": 45,
             "subsector_ID": 2,
-            "description": "A stable world with an unusually thriving community of theaters and plays."
+            "description": "A stable world with an unusually thriving community of theaters."
         },
         {
-            "system_name": "Knight World",
+            "system_name": "Ban's Hammer",
+            "system_type_ID": 7,
+            "location_x": 61,
+            "location_y": 24,
+            "subsector_ID": 2,
+            "description": "A civilised world."
+        },
+        {
+            "system_name": "Va'letta",
             "system_type_ID": 10,
-            "location_x": 50,
-            "location_y": 55,
+            "location_x": 54.5,
+            "location_y": 65,
             "subsector_ID": 2,
             "description": "A Knight world."
         },
         {
+            "system_name": "Ollantay",
+            "system_type_ID": 6,
+            "location_x": 48,
+            "location_y": 32,
+            "subsector_ID": 2,
+            "description": "An industrial world."
+        },
+        {
             "system_name": "Koenig Station",
             "system_type_ID": 11,
-            "location_x": 20,
-            "location_y": 75,
-            "subsector_ID": 3,
+            "location_x": 61,
+            "location_y": 69,
+            "subsector_ID": 2,
             "description": "An ancient research station."
         },
         {
-            "system_name": "Penal World",
+            "system_name": "Pente IV",
             "system_type_ID": 13,
-            "location_x": 76,
-            "location_y": 60,
-            "subsector_ID": 4,
-            "description": "A dead world with a huge penal colony."
+            "location_x": 62.5,
+            "location_y": 78,
+            "subsector_ID": 2,
+            "description": "A dead moon with a huge penal colony."
         },
         {
-            "system_name": "Mining Asteroid",
+            "system_name": "Caerys",
             "system_type_ID": 8,
-            "location_x": 90,
-            "location_y": 35,
-            "subsector_ID": 4,
+            "location_x": 57.5,
+            "location_y": 16,
+            "subsector_ID": 2,
             "description": "An important mining asteroid."
+        },
+
+
+        {
+            "system_name": "3 Forge",
+            "system_type_ID": 2,
+            "location_x": 25,
+            "location_y": 69,
+            "subsector_ID": 3,
+            "description": "A minor forge world."
+        },
+        {
+            "system_name": "3 Hive",
+            "system_type_ID": 1,
+            "location_x": 32,
+            "location_y": 84,
+            "subsector_ID": 3,
+            "description": "A minor hive world."
+        },
+        {
+            "system_name": "3 Civilised",
+            "system_type_ID": 7,
+            "location_x": 13,
+            "location_y": 78,
+            "subsector_ID": 3,
+            "description": "A civilised world."
+        },
+        {
+            "system_name": "3 Civilised2",
+            "system_type_ID": 7,
+            "location_x": 41,
+            "location_y": 71.5,
+            "subsector_ID": 3,
+            "description": "A civilised world."
+        },
+        {
+            "system_name": "3 Armory",
+            "system_type_ID": 6,
+            "location_x": 26,
+            "location_y": 61,
+            "subsector_ID": 3,
+            "description": "An industrial armory world."
+        },
+        {
+            "system_name": "3 Agri",
+            "system_type_ID": 9,
+            "location_x": 44,
+            "location_y": 93,
+            "subsector_ID": 3,
+            "description": "An agri world."
+        },
+        {
+            "system_name": "3 Cardinal",
+            "system_type_ID": 4,
+            "location_x": 50,
+            "location_y": 82,
+            "subsector_ID": 3,
+            "description": "A cardinal world."
+        },
+        {
+            "system_name": "3 Feral",
+            "system_type_ID": 14,
+            "location_x": 52,
+            "location_y": 74,
+            "subsector_ID": 3,
+            "description": "A feral world."
+        },
+        {
+            "system_name": "3 Feudal",
+            "system_type_ID": 12,
+            "location_x": 39,
+            "location_y": 57,
+            "subsector_ID": 3,
+            "description": "A feudal world."
+        },
+
+
+        {
+            "system_name": "4 Dockyard",
+            "system_type_ID": 3,
+            "location_x": 88,
+            "location_y": 46,
+            "subsector_ID": 4,
+            "description": "A huge dockyard."
+        },
+        {
+            "system_name": "4 Industrial",
+            "system_type_ID": 6,
+            "location_x": 80,
+            "location_y": 78,
+            "subsector_ID": 4,
+            "description": "An industrial world."
+        },
+        {
+            "system_name": "4 Civilised",
+            "system_type_ID": 7,
+            "location_x": 86,
+            "location_y": 31,
+            "subsector_ID": 4,
+            "description": "A civilised world."
+        },
+        {
+            "system_name": "4 Penal",
+            "system_type_ID": 13,
+            "location_x": 75,
+            "location_y": 50,
+            "subsector_ID": 4,
+            "description": "A penal world."
+        },
+        {
+            "system_name": "4 Knight",
+            "system_type_ID": 10,
+            "location_x": 82,
+            "location_y": 63,
+            "subsector_ID": 4,
+            "description": "A knight world."
+        },
+        {
+            "system_name": "4 Feudal",
+            "system_type_ID": 12,
+            "location_x": 66,
+            "location_y": 48,
+            "subsector_ID": 4,
+            "description": "A feudal world."
+        },
+        {
+            "system_name": "4 Feudal2",
+            "system_type_ID": 12,
+            "location_x": 71,
+            "location_y": 65,
+            "subsector_ID": 4,
+            "description": "A feudal world."
+        },
+        {
+            "system_name": "Supply Station",
+            "system_type_ID": 6,
+            "location_x": 72.5,
+            "location_y": 39,
+            "subsector_ID": 4,
+            "description": "A supply station."
+        },
+        {
+            "system_name": "4 Agri Moon",
+            "system_type_ID": 9,
+            "location_x": 69.5,
+            "location_y": 26,
+            "subsector_ID": 4,
+            "description": "An agri moon."
+        },
+        {
+            "system_name": "4 Mining",
+            "system_type_ID": 8,
+            "location_x": 82,
+            "location_y": 55,
+            "subsector_ID": 4,
+            "description": "A mining world."
         }
     ]
 }
