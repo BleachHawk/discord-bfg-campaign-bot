@@ -262,7 +262,7 @@
             "system_name": "Agri",
             "system_type_ID": 9,
             "location_x": 40,
-            "location_y": 26,
+            "location_y": 25,
             "subsector_ID": 1,
             "description": "A agri world."
         },
@@ -476,12 +476,12 @@
             "capital_type_ID": 2
         },
         {
-            "system_name": "4 Penal",
+            "system_name": "Cursed Trench",
             "system_type_ID": 13,
             "location_x": 75,
             "location_y": 50,
             "subsector_ID": 4,
-            "description": "A penal world."
+            "description": "A penal colony on an icy small planet."
         },
         {
             "system_name": "4 Knight",
